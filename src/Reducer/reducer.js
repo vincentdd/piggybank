@@ -2,7 +2,7 @@ import { combineReducers, createStore } from 'redux';
 //import {createStore} from "redux/index";
 
 const initial = {
-    tag: [
+    tags: [
         {
             id: 0,
             text: '餐饮'
@@ -16,7 +16,7 @@ const initial = {
             text: '交通'
         }
     ],
-    bill: [
+    bills: [
         {
             id: 0,
             text: '午饭',
@@ -46,13 +46,13 @@ const initial = {
             price: 37
         }
     ],
-    timeFilter: {
+    filter: {
         filter: 'day'
     }
 }
 
-let ITEM_ID = initial.bill.length,
-    TAG_ID = initial.tag.length;
+let ITEM_ID = initial.bills.length,
+    TAG_ID = initial.tags.length;
 ///////////////////////////////////////////////////////////////////////////////////////
 function deepFreeze (o) {
     Object.freeze(o);
@@ -112,7 +112,7 @@ const tag = (state, action) => {
     }
 }
 
-const billList = (state = initial.bill || [], action) => {
+const bills = (state = initial.bills || [], action) => {
     switch (action.type){
         case 'ADD_ITEM':
             return [
@@ -126,7 +126,7 @@ const billList = (state = initial.bill || [], action) => {
     }
 };
 
-const tagList = (state = initial.tag || [], action) => {
+const tags = (state = initial.tags || [], action) => {
     switch (action.type){
         case 'ADD_TAG':
             return [
@@ -140,7 +140,7 @@ const tagList = (state = initial.tag || [], action) => {
     }
 }
 
-const timeFilter = (state = initial.timeFilter || {filter: 'NONE'}, action) => {
+const filter = (state = initial.filter || {filter: 'NONE'}, action) => {
     switch (action.type){
         case 'SET_FILTER':
             return {filter: action.filter};
@@ -150,9 +150,9 @@ const timeFilter = (state = initial.timeFilter || {filter: 'NONE'}, action) => {
 }
 // const { combineReducers, cr eateStore } = Redux;
 const piggyBank = combineReducers({
-    billList,
-    tagList,
-    timeFilter
+    bills,
+    tags,
+    filter
 })
 
 const store = createStore(piggyBank);

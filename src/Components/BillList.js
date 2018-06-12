@@ -7,7 +7,8 @@ export default class BillList extends Component {
         super();
     }
     render(){
-        const dom = this.props.billList.map(current => <BillItem bill = {current}></BillItem>)
+        console.log(this.props.bills);
+        const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id}></BillItem>)
         return (<div>
             {dom}
         </div>)
