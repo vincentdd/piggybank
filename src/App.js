@@ -5,17 +5,62 @@ import { combineReducers, createStore } from 'redux';
 import BillList from './Components/BillList';
 
 class App extends Component {
-    billFilter(bills, timeFilter){
+    createArr(item){
         const filtered = [];
-        if(timeFilter === 'NONE'){
+        filtered.push(item);
+        return filtered;
+    };
+    showDay(bills) {
+        let result = [],
+            ITEM_ID = 0,
+            temp = {
+                id: ITEM_ID,
+                price: 0,
+                tagId: 'NONE'
+            };
+        if(!Date.prototype.__filterTime)
             return bills;
-        }else if(timeFilter === 'DAY'){
-
+        bills.map((current, index, array) => {
+            const dayOfBefore = new Date(current.date).__filterTime(),
+                dayOfAfter = new Date(array[index + 1].date).__filterTime();
+            if(dayOfBefore === dayOfAfter){
+                temp.price += current.price;
+                temp.text = current.date;
+                temp.date = current.date;
+            }else{
+                result.push(temp);
+                temp = {
+                    id: ITEM_ID++,
+                    price: 0,
+                    tagId: 'NONE'
+                };
+            }
+        });
+        return result;
+    }
+    filterSelect(bills, filter){
+        switch (filter){
+            case 'DAY':
+                Date.prototype.__filterTime = new Date().getDate;
+                break;
+            case 'WEEK':
+                Date.prototype.__filterTime = new Date().getDay;
+                break;
+            case 'MONTH':
+                Date.prototype.__filterTime = new Date().getMonth;
+                break;
+            case 'YEAR':
+                Date.prototype.__filterTime = new Date().getFullYear;
+                break;
+            default:
+                Date.prototype.__filterTime = undefined;
+                break;
         }
+        return this.showDay(bills);
     };
     render() {
-        const {bills, timeFilter} = this.props;
-        const filtered = this.billFilter(bills, timeFilter);
+        const {bills, filter} = this.props;
+        const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
                  <BillList bills = {this.props.bills}>
