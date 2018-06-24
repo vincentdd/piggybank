@@ -48,6 +48,9 @@ const initial = {
     ],
     filter: {
         filter: 'day'
+    },
+    model: {
+        model: 'list'
     }
 }
 
@@ -148,11 +151,21 @@ const filter = (state = initial.filter || {filter: 'NONE'}, action) => {
             return {filter: 'NONE'};
     }
 }
+
+const model = (state = initial.model || {model: 'list'}, action) => {
+    switch (action.type){
+        case 'SET_MODEL':
+            return {filter: action.model};
+        default:
+            return {filter: 'list'};
+    }
+}
 // const { combineReducers, cr eateStore } = Redux;
 const piggyBank = combineReducers({
     bills,
     tags,
-    filter
+    filter,
+    model
 })
 
 const store = createStore(piggyBank);
