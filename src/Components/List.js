@@ -16,4 +16,3 @@ export default class List extends Component {
     }
 }
 
-const mapStateToProps =

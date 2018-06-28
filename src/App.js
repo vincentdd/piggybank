@@ -15,11 +15,7 @@ class App extends Component {
     showDay(bills) {
         let result = [],
             ITEM_ID = 0,
-            temp = {
-                id: ITEM_ID,
-                price: 0,
-                tagId: 'NONE'
-            };
+            temp = {};
         if(!Date.prototype.__filterTime)
             return bills;
         bills.map((current, index, array) => {
@@ -65,8 +61,12 @@ class App extends Component {
         const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
+<<<<<<< HEAD
                  <InputItem onAddClick = { }></InputItem>
                  <BillList bills = {this.props.bills}>
+=======
+                 <BillList bills = {filtered}>
+>>>>>>> 554943c09361040dc864b399723ea537eac147c8
                  </BillList>
             </div>
         );
