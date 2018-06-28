@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { combineReducers, createStore } from 'redux';
 import BillList from './Components/BillList';
+import InputItem from './Components/InputItem';
+import store from './Reducer/reducer';
 
 class App extends Component {
     createArr(item){
@@ -63,6 +65,7 @@ class App extends Component {
         const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
+                 <InputItem onAddClick = { }></InputItem>
                  <BillList bills = {this.props.bills}>
                  </BillList>
             </div>

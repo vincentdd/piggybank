@@ -73,7 +73,7 @@ const bill = (state, action) => {
     switch (action.type){
         case 'ADD_ITEM':
             return {
-                id: ++ITEM_ID,
+                id: action.id,
                 text: action.text,
                 date: action.date,
                 price: action.price,
