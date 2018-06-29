@@ -24,7 +24,7 @@ class App extends Component {
                 temp.text = current.date;
                 temp.date = current.date;
             }else{
-                result.push(temp);
+                [...result, temp];
                 temp = {
                     id: ITEM_ID++,
                     price: 0,
