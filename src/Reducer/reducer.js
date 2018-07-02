@@ -46,12 +46,8 @@ const initial = {
             price: 37
         }
     ],
-    filter: {
-        filter: 'day'
-    },
-    model: {
-        model: 'list'
-    }
+    filter: 'day',
+    model: 'list'
 }
 
 let ITEM_ID = initial.bills.length,

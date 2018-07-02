@@ -7,6 +7,7 @@ import InputItem from './Components/InputItem';
 import store from './Reducer/reducer';
 
 class App extends Component {
+<<<<<<< HEAD
     showDay(bills) {
         let result = [],
             ITEM_ID = 0,
@@ -51,13 +52,19 @@ class App extends Component {
         }
         return this.showDay(bills);
     };
+=======
+>>>>>>> 11d285f6c2c2cbfbf6e7b217e901b13bbb824d1f
     render() {
-        const {bills, filter} = this.props;
-        const filtered = this.filterSelect(bills, filter);
+        // const {bills, filter} = this.props;
+        // const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
                  <InputItem onAddClick ></InputItem>
+<<<<<<< HEAD
                  <BillList bills = {this.props.bills}>
+=======
+                 <BillList>
+>>>>>>> 11d285f6c2c2cbfbf6e7b217e901b13bbb824d1f
                  </BillList>
             </div>
         );
