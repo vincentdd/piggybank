@@ -7,11 +7,6 @@ import InputItem from './Components/InputItem';
 import store from './Reducer/reducer';
 
 class App extends Component {
-    createArr(item){
-        const filtered = [];
-        filtered.push(item);
-        return filtered;
-    };
     showDay(bills) {
         let result = [],
             ITEM_ID = 0,
@@ -26,7 +21,7 @@ class App extends Component {
                 temp.text = current.date;
                 temp.date = current.date;
             }else{
-                result.push(temp);
+                [...result, temp];
                 temp = {
                     id: ITEM_ID++,
                     price: 0,
@@ -61,12 +56,8 @@ class App extends Component {
         const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
-<<<<<<< HEAD
-                 <InputItem onAddClick = { }></InputItem>
+                 <InputItem onAddClick ></InputItem>
                  <BillList bills = {this.props.bills}>
-=======
-                 <BillList bills = {filtered}>
->>>>>>> 554943c09361040dc864b399723ea537eac147c8
                  </BillList>
             </div>
         );

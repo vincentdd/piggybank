@@ -9,10 +9,14 @@ export default InputItem = ({
             <input ref={ node => {
                 input = node;
             }} type="text"/>
-            <button onClick={() => {
-                onAddClick(input.value);
-                input.value = '';
-            }}>Add</button>
+            <button onClick={}>Add</button>
         </div>
     )
+}
+
+
+
+const mapDispatchToProps = () => {
+    onAddClick(input.value);
+    input.value = '';
 }

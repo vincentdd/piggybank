@@ -1,7 +1,7 @@
 import React from 'react';
 import BillItem from "./BillItem";
 const { Component } = React;
-import {connet} from 'react-redux';
+import {connect} from 'react-redux';
 
 export default class List extends Component {
     constructor() {
@@ -16,4 +16,6 @@ export default class List extends Component {
     }
 }
 
-const mapStateToProps =
+const mapStateToProps = (state) => {
+    
+}
