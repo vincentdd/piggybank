@@ -9,24 +9,12 @@ const InputLabel = () => {
             <input ref={ node => {
                 input = node;
             }} type="text"/>
-<<<<<<< HEAD
-            <button onClick={}>Add</button>
-=======
             <button>Add</button>
             <Checkbox>批量导入</Checkbox>
->>>>>>> 11d285f6c2c2cbfbf6e7b217e901b13bbb824d1f
         </div>
     )
 }
 
-<<<<<<< HEAD
-
-
-const mapDispatchToProps = () => {
-    onAddClick(input.value);
-    input.value = '';
-}
-=======
 const mapDispatchToProps = (dispatch) => {
     return {
         onInputClick: value => {
@@ -40,8 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {}
 const InputItem = connect(
-    mapStateToProps(),
-    mapDispatchToProps()
+    mapStateToProps,
+    mapDispatchToProps
 )(InputLabel);
 export default InputItem;
->>>>>>> 11d285f6c2c2cbfbf6e7b217e901b13bbb824d1f

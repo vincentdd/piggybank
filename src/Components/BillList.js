@@ -1,17 +1,13 @@
 import React from 'react';
 import BillItem from "./BillItem";
-<<<<<<< HEAD
-const { Component } = React;
-=======
->>>>>>> 11d285f6c2c2cbfbf6e7b217e901b13bbb824d1f
 import {connect} from 'react-redux';
 
 const { Component } = React;
-export default class List extends Component {
+class List extends Component {
     constructor() {
         super();
     }
-    render(){;
+    render(){
         console.log(this.props.bills);
         const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id}></BillItem>)
         return (<div>
@@ -20,10 +16,6 @@ export default class List extends Component {
     }
 }
 
-<<<<<<< HEAD
-const mapStateToProps = (state) => {
-    
-=======
 function showDay(bills) {
     let result = [],
         ITEM_ID = 0,
@@ -48,6 +40,7 @@ function showDay(bills) {
     });
     return result;
 }
+
 function filterSelect(bills, filter){
     switch (filter){
         case 'DAY':
@@ -67,11 +60,21 @@ function filterSelect(bills, filter){
             break;
     }
     return showDay(bills);
-};
+}
 
 const mapStateToProps = (state) => {
     return {
         bills:filterSelect(state.bills, state.filter)
     }
->>>>>>> 11d285f6c2c2cbfbf6e7b217e901b13bbb824d1f
 }
+
+const mapDispatchToProps = (dispatch) => {
+
+}
+
+const BillList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(List);
+
+export default BillList;
