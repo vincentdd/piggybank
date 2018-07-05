@@ -11,9 +11,8 @@ class App extends Component {
         // const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
-                 <InputItem ></InputItem>
-                 <BillList>
-                 </BillList>
+                 <InputItem />
+                 <BillList />
             </div>
         );
     }
