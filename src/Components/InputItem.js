@@ -10,7 +10,10 @@ const InputLabel = () => {
                 input = node;
             }} type="text"/>
             <button>Add</button>
-            <Checkbox>批量导入</Checkbox>
+            <label>
+                <Checkbox />
+                批量导入
+            </label>
         </div>
     )
 }
