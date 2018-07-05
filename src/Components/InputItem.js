@@ -3,15 +3,21 @@ import Checkbox from 'rc-checkbox';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const InputLabel = ({ toggleCheckbox }) => {
+const InputLabel = ({ toggleCheckbox, submitStr }) => {
     let input;
-
     return (
         <div>
-            <input ref={ node => {
-                input = node;
-            }} type="text"/>
-            <button>Add</button>
+            <input ref={ (node) => (
+                input = node
+            )} type="text"/>
+            <button onClick={
+                (input) => {
+                    if(input.value.trim()){
+                        return;
+                    }
+                    submitStr(input.value)
+                }
+            }>Add</button>
             <label>
                 <Checkbox onChange={(e) => toggleCheckbox(e)} />
                 批量导入
@@ -20,8 +26,7 @@ const InputLabel = ({ toggleCheckbox }) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
+const mapDispatchToProps = (dispatch) => ({
         toggleCheckbox: (e) => {
             console.log(e.target.checked);
             // dispatch({
@@ -35,8 +40,7 @@ const mapDispatchToProps = (dispatch) => {
                     content: value,
             })
         }
-    }
-}
+});
 
 function getInput() {
     
@@ -50,7 +54,7 @@ function setAction() {
     
 }
 
-const mapStateToProps = (state) => {}
+const mapStateToProps = (state) => ({})
 export default connect(
     mapStateToProps,
     mapDispatchToProps
