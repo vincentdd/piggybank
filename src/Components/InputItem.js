@@ -3,21 +3,15 @@ import Checkbox from 'rc-checkbox';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const InputLabel = ({ toggleCheckbox, submitStr }) => {
+const InputLabel = ({ toggleCheckbox, getInput }) => {
     let input;
     return (
         <div>
             <input ref={ (node) => (
                 input = node
             )} type="text"/>
-            <button onClick={
-                (input) => {
-                    if(input.value.trim()){
-                        return;
-                    }
-                    submitStr(input.value)
-                }
-            }>Add</button>
+            {/*{console.log(this.props)}*/}
+            <button onClick={getInput(input, this.props.toggleFlag)}>Add</button>
             <label>
                 <Checkbox onChange={(e) => toggleCheckbox(e)} />
                 批量导入
@@ -27,24 +21,28 @@ const InputLabel = ({ toggleCheckbox, submitStr }) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-        toggleCheckbox: (e) => {
-            console.log(e.target.checked);
-            // dispatch({
-            //     type: 'TGOGGLE_FLAG',
-            //     flag: e.target.checked
-            // })
-        },
-        onInputClick: (value) => {
-            dispatch({
-                    type: 'ADD_ITEM',
-                    content: value,
-            })
+    toggleCheckbox: (e) => {
+        console.log(e.target.checked);
+        dispatch({
+            type: 'TGOGGLE_FLAG',
+            flag: e.target.checked
+        })
+    },
+    addBill: (value) => {
+        dispatch({
+            type: 'ADD_ITEM',
+            content: value,
+        })
+    },
+    getInput: (input, toggleFlag) => {
+        if(!input.value.trim()){
+            return;
+        }else if(1) {
+            console.log(toggleFlag);
         }
+        // addBill(input.value)
+    }
 });
-
-function getInput() {
-    
-}
 
 function spliteStr() {
     
@@ -54,7 +52,9 @@ function setAction() {
     
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+    toggleFlag: state.toggleFlag
+})
 export default connect(
     mapStateToProps,
     mapDispatchToProps
