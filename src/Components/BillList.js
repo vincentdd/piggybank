@@ -62,19 +62,15 @@ function filterSelect(bills, filter){
     return showDay(bills);
 }
 
-const mapStateToProps = (state) => {
-    return {
-        bills:filterSelect(state.bills, state.filter)
-    }
-}
+const mapStateToProps = (state) => ({
+    bills:filterSelect(state.bills, state.filter)
+})
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => ({
 
-}
+})
 
-const BillList = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(List);
-
-export default BillList;

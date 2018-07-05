@@ -47,7 +47,8 @@ const initial = {
         }
     ],
     filter: 'day',
-    model: 'list'
+    model: 'list',
+    toggleFlag: false
 }
 
 let ITEM_ID = initial.bills.length,
@@ -151,9 +152,18 @@ const filter = (state = initial.filter || {filter: 'NONE'}, action) => {
 const model = (state = initial.model || {model: 'list'}, action) => {
     switch (action.type){
         case 'SET_MODEL':
-            return {filter: action.model};
+            return {model: action.model};
         default:
-            return {filter: 'list'};
+            return {model: 'list'};
+    }
+}
+
+const toggleFlag = (state = initial.toggleFlag || {toggleFlag: false}, action) => {
+    switch (action.type){
+        case 'TOGGLE_FLAG':
+            return {toggleFlag: action.flag};
+        default:
+            return {toggleFlag: false};
     }
 }
 // const { combineReducers, cr eateStore } = Redux;
@@ -161,7 +171,8 @@ const piggyBank = combineReducers({
     bills,
     tags,
     filter,
-    model
+    model,
+    toggleFlag
 })
 
 const store = createStore(piggyBank);
