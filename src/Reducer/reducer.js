@@ -140,30 +140,30 @@ const tags = (state = initial.tags || [], action) => {
     }
 }
 
-const filter = (state = initial.filter || {filter: 'NONE'}, action) => {
+const filter = (state = initial.filter || 'NONE', action) => {
     switch (action.type){
         case 'SET_FILTER':
-            return {filter: action.filter};
+            return action.filter;
         default:
-            return {filter: 'NONE'};
+            return state;
     }
 }
 
-const model = (state = initial.model || {model: 'list'}, action) => {
+const model = (state = initial.model || 'list', action) => {
     switch (action.type){
         case 'SET_MODEL':
-            return {model: action.model};
+            return action.model;
         default:
-            return {model: 'list'};
+            return state;
     }
 }
 
-const toggleFlag = (state = initial.toggleFlag || {toggleFlag: false}, action) => {
+const toggleFlag = (state = initial.toggleFlag ||  false, action) => {
     switch (action.type){
         case 'TOGGLE_FLAG':
-            return {toggleFlag: action.flag};
+            return action.flag;
         default:
-            return {toggleFlag: false};
+            return state;
     }
 }
 // const { combineReducers, cr eateStore } = Redux;
