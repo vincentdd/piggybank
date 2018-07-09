@@ -11,7 +11,7 @@ const InputLabel = ({ toggleCheckbox, getInput }) => {
                 input = node
             )} type="text"/>
             {/*{console.log(this.props)}*/}
-            <button onClick={getInput(input, this.props.toggleFlag)}>Add</button>
+            <button onClick={e => e.preventDefault()}>Add</button>
             <label>
                 <Checkbox onChange={(e) => toggleCheckbox(e)} />
                 批量导入
@@ -34,14 +34,14 @@ const mapDispatchToProps = (dispatch) => ({
             content: value,
         })
     },
-    getInput: (input, toggleFlag) => {
-        if(!input.value.trim()){
-            return;
-        }else if(1) {
-            console.log(toggleFlag);
-        }
-        // addBill(input.value)
-    }
+    // getInput: (input, toggleFlag) => {
+    //     if(!input.value.trim()){
+    //         return;
+    //     }else if(1) {
+    //         console.log(toggleFlag);
+    //     }
+    //     // addBill(input.value)
+    // }
 });
 
 function spliteStr() {
