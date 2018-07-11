@@ -51,15 +51,25 @@ function getBillItem(str) {
     const rege = /[：:]+/;
     let o = {};
 
-    str.split(rege).map((current, index) => {
+    let result = str.split(rege).map((current, index) => {
         index === 0 ? o.name = current : o.price = current;
     });
+    return result;
 }
 
-function spliteStr() {
+function spliteStr(str) {
     const rege = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/;
+    let arrDate = str.match(rege),
+        arrBills = str.split(rege),
+        result = [];
 
-    rege.test('02.02')
+    result = arrDate.map((current, index) => {
+        let o = {};
+        o.bills = current;
+        o.date = arrDate;
+    });
+
+    return result;
 }
 
 function setAction() {
