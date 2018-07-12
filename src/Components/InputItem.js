@@ -48,33 +48,47 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-function getBillItem(str) {
+function getBillItem(str, date) {
     const rege = /[：:]+/;
-    let o = {};
+    let temp = str.split(rege),
+        year = Date.get,
+        dateTime;
 
-    let result = str.split(rege).map((current, index) => {
-        index === 0 ? o.name = current : o.price = current;
-    });
-    return result;
+    if(typeof date === 'object')
+        dateTime = date;
+    else if(typeof date === 'object')
+
+
+    return {
+        name: temp[0],
+        price: temp[1]
+    }
 }
 
 function spliteStr(str) {
     const rege = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/;
-    let arrDate = str.match(rege),
+    let arrDate = str.match(rege).slice(1),
         arrBills = str.split(rege),
-        result = [];
-
+        result;
+    
+    if (arrDate.length !== arrBills.length)
+        return false;
     result = arrDate.map((current, index) => {
         let o = {};
         o.bills = current;
-        o.date = arrDate;
+        o.date = arrDate[index];
+        return o;
     });
-
     return result;
 }
 
-function setAction() {
-    
+function setAction(arr) {
+
+    arr.map()
+}
+
+function sendAction(arr) {
+
 }
 
 const mapStateToProps = (state) => ({
