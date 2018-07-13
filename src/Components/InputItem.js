@@ -51,17 +51,19 @@ const mapDispatchToProps = (dispatch) => ({
 function getBillItem(str, date) {
     const rege = /[：:]+/;
     let temp = str.split(rege),
-        year = Date.get,
+        year = new Date().getFullYear(),
         dateTime;
 
     if(typeof date === 'object')
         dateTime = date;
-    else if(typeof date === 'object')
-
-
+    else if(typeof date === 'string')
+        dateTime = new Date(`${year}.date`);
+    else
+        dateTime = new Date();
     return {
         name: temp[0],
-        price: temp[1]
+        price: temp[1],
+        date: dateTime
     }
 }
 
@@ -83,8 +85,9 @@ function spliteStr(str) {
 }
 
 function setAction(arr) {
+    arr.map(() => {
 
-    arr.map()
+    });
 }
 
 function sendAction(arr) {
