@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function getBillItem(str, date) {
-    const rege = /[：:]+/;
+    const rege = /[：:]+/g;
     let temp = str.split(rege),
         year = Date.get,
         dateTime;
@@ -66,7 +66,7 @@ function getBillItem(str, date) {
 }
 
 function spliteStr(str) {
-    const rege = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/;
+    const rege = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/g;
     let arrDate = str.match(rege).slice(1),
         arrBills = str.split(rege),
         result;
@@ -83,8 +83,11 @@ function spliteStr(str) {
 }
 
 function setAction(arr) {
+    const rege = /\r\n/g;
 
-    arr.map()
+    arr.map((current) => {
+        
+    });
 }
 
 function sendAction(arr) {
