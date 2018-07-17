@@ -32,10 +32,8 @@ const mapDispatchToProps = (dispatch) => ({
         })
     },
     addBill: (value) => {
-        dispatch({
-            type: 'ADD_ITEM',
-            content: value,
-        })
+        let billsArr = new BillsArr(value);
+        billsArr
     },
     getInput: (str, toggleFlag) => {
         if(!str.trim()){
@@ -48,67 +46,128 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-class inputHandle {
-    constructor (){
-
+class BillsArr {
+    constructor (str){
+        this.inputStr = str;
     }
-
-}
-
-function getBillItem(str, date) {
-    const rege = /[：:]+/g;
-    let temp = str.split(rege),
-        year = new Date().getFullYear(),
-        dateTime;
-
-    if(typeof date === 'object')
-        dateTime = date;
-    else if(typeof date === 'string')
-        dateTime = new Date(`${year}.date`);
-    else
-        dateTime = new Date();
-    return {
-        name: temp[0],
-        price: temp[1],
-        date: dateTime
-    }
-}
-
-function spliteStr(str) {
-    const regDate = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/g,
-            regEnter = /\r\n/g;
-    let arrDate = str.match(regDate).slice(1),
-        arrBills = str.split(regDate),
-        result;
-    
-    if (arrDate.length !== arrBills.length)
-        return false;
-    result = arrDate.map((current, index) => {
-        let o = {};
-        o.bills = current.split(regEnter);
-        o.date = arrDate[index];
-        return o;
-    });
-    return result;
-}
-
-function setActionArr(arr) {
-    let result;
-
-    result = arr.reduce((accumulator, currentValue) => {
-        let temp,
-            arrOfBills = currentValue.bills,
-            date = currentValue.date;
-
-        temp = arrOfBills.map((current) => {
-            return {
-                str: current,
-                date:date
-            }
+    set inputStr (str){
+        this.spliteStr(str);
+        this.getBillsArr();
+        this.actionArr = this.billsArr.map((current) => {
+            this.getActionArr(current.bills, current.date)
         });
-        accumulator.concat(temp)
-    }, []);
+    }
+    spliteStr(str) {
+        const regDate = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/g,
+            regEnter = /\r\n/g;
+        let arrDate = str.match(regDate).slice(1),
+            arrBills = str.split(regDate),
+            result;
+
+        if (arrDate.length !== arrBills.length)
+            return false;
+        result = arrDate.map((current, index) => {
+            let o = {};
+            o.bills = current.split(regEnter);
+            o.date = arrDate[index];
+            return o;
+        });
+        this.tempArr =  result;
+    }
+    getBillsArr() {
+        let result,
+            arr = this.tempArr;
+
+        result = arr.reduce((accumulator, currentValue) => {
+            let temp,
+                arrOfBills = currentValue.bills,
+                date = currentValue.date;
+
+            temp = arrOfBills.map((current) => {
+                return {
+                    str: current,
+                    date:date
+                }
+            });
+            accumulator.concat(temp)
+        }, []);
+
+        this.billsArr = result;
+    }
+    getActionArr(str, date) {
+        const rege = /[：:]+/g;
+        let temp = str.split(rege),
+            year = new Date().getFullYear(),
+            dateTime;
+
+        if(typeof date === 'object')
+            dateTime = date;
+        else if(typeof date === 'string')
+            dateTime = new Date(`${year}.date`);
+        else
+            dateTime = new Date();
+        return {
+            name: temp[0],
+            price: temp[1],
+            date: dateTime
+        }
+    }
 }
+//
+// function getBillItem(str, date) {
+//     const rege = /[：:]+/g;
+//     let temp = str.split(rege),
+//         year = new Date().getFullYear(),
+//         dateTime;
+//
+//     if(typeof date === 'object')
+//         dateTime = date;
+//     else if(typeof date === 'string')
+//         dateTime = new Date(`${year}.date`);
+//     else
+//         dateTime = new Date();
+//     return {
+//         name: temp[0],
+//         price: temp[1],
+//         date: dateTime
+//     }
+// }
+//
+// function spliteStr(str) {
+//     const regDate = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/g,
+//             regEnter = /\r\n/g;
+//     let arrDate = str.match(regDate).slice(1),
+//         arrBills = str.split(regDate),
+//         result;
+//
+//     if (arrDate.length !== arrBills.length)
+//         return false;
+//     result = arrDate.map((current, index) => {
+//         let o = {};
+//         o.bills = current.split(regEnter);
+//         o.date = arrDate[index];
+//         return o;
+//     });
+//     return result;
+// }
+//
+// function setActionArr(arr) {
+//     let result;
+//
+//     result = arr.reduce((accumulator, currentValue) => {
+//         let temp,
+//             arrOfBills = currentValue.bills,
+//             date = currentValue.date;
+//
+//         temp = arrOfBills.map((current) => {
+//             return {
+//                 str: current,
+//                 date:date
+//             }
+//         });
+//         accumulator.concat(temp)
+//     }, []);
+// }
 
 function initActionArr(str) {
     let tempArr,result;
