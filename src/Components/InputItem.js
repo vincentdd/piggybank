@@ -77,23 +77,33 @@ class BillsArr {
         });
     }
     spliteStr(str) {
-        const regDate = /^([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/g,
+        const regDate = /\b(10|1?[12]|[1-9])\.(3[01]|10|20|[12][1-9])\b/g,
             regEnter = /\s/g;
-        let arrDate = str.match(regDate),
-            arrBills = str.split(regEnter),
+        let arrDate = str.match(regDate).slice(1),
+            arrBills,
+            tempStr = str,
             result;
         console.log(arrDate);
-    // .slice(1)
-        console.log('str: ' + str);
-        if (arrDate.length !== arrBills.length)
-            return false;
-        result = arrDate.map((current, index) => {
-            let o = {};
-            o.bills = current.split(regEnter);
-            o.date = arrDate[index];
-            return o;
+        console.log(tempStr.match(regDate).length);
+        for (let length = tempStr.match(regDate).length - 1; length > 0; length --) {
+            tempStr = tempStr.replace(regDate, '|')
+        }
+        // while (tempStr.match(regDate).length > 1) {
+        // }
+        arrBills = tempStr.split('|');
+    //     /^\b([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\b$/g
+        console.log('str: ' + tempStr);
+        // if (arrDate.length !== arrBills.length)
+        //     return false;
+        result = arrBills.map((current, index) => {
+            let temp = current.split(regEnter);
+            if (temp.length !== 0)
+                return {
+                    bills: temp,
+                    date: arrDate[index]
+                }
         });
-        console.log(result)
+        console.log(result);
         this.tempArr =  result;
     }
     getBillsArr() {
