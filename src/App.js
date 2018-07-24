@@ -4,15 +4,18 @@ import { combineReducers, createStore } from 'redux';
 import BillList from './Components/BillList';
 import InputItem from './Components/InputItem';
 import store from './Reducer/reducer';
+import { BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom'
 
 class App extends Component {
     render() {
-        // const {bills, filter} = this.props;
-        // const filtered = this.filterSelect(bills, filter);
         return (
             <div className="App" >
-                 <InputItem />
-                 <BillList />
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <NavLink to="inputitem">Add one</NavLink>
+                    <Route path="/inputitem" component={InputItem} />
+                    <Route path="/billlist" component={BillList} />
+                </Switch>
             </div>
         );
     }
