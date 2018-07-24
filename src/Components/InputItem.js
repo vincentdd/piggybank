@@ -47,8 +47,6 @@ const mapDispatchToProps = (dispatch) => ({
         if(temp == null){
             return;
         }else if(toggleFlag) {
-            // getBillItem(str);
-            // this.addBill(str);
             console.log('add a lot')
             let billsArr = new BillsArr(temp);
             console.log(billsArr.actionArr);
