@@ -70,49 +70,51 @@ class BillsArr {
         this.inputStr = str;
     }
     set inputStr (str){
-        this.spliteStr(str);
-        this.getBillsArr();
+        // this.spliteStr(str);
+        if (typeof str === "object" && JSON.parse(str).length != 0)
+            this.getBillsArr();
         this.actionArr = this.billsArr.map((current) => {
             this.getActionArr(current.bills, current.date)
         });
     }
-    spliteStr(str) {
-        const regDate = /\b(10|1?[12]|[1-9])\.(3[01]|10|20|[12][1-9])\b/g,
-            regEnter = /\s/g;
-        let arrDate = str.match(regDate).slice(1),
-            arrBills,
-            tempStr = str,
-            result;
-        console.log(arrDate);
-        console.log(tempStr.match(regDate).length);
-        for (let length = tempStr.match(regDate).length - 1; length > 0; length --) {
-            tempStr = tempStr.replace(regDate, '|')
-        }
-        // while (tempStr.match(regDate).length > 1) {
-        // }
-        arrBills = tempStr.split('|');
-    //     /^\b([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\b$/g
-        console.log('str: ' + tempStr);
-        // if (arrDate.length !== arrBills.length)
-        //     return false;
-        result = arrBills.map((current, index) => {
-            let temp = current.split(regEnter);
-            if (temp.length !== 0)
-                return {
-                    bills: temp,
-                    date: arrDate[index]
-                }
-        });
-        console.log(result);
-        this.tempArr =  result;
-    }
+    // spliteStr(str) {
+    //     const regDate = /\b(10|1?[12]|[1-9])\.(3[01]|10|20|[12][1-9])\b/g,
+    //         regEnter = /\s/g;
+    //     let arrDate = str.match(regDate).slice(1),
+    //         arrBills,
+    //         tempStr = str,
+    //         result;
+    //     console.log(arrDate);
+    //     console.log(tempStr.match(regDate).length);
+    //     for (let length = tempStr.match(regDate).length - 1; length > 0; length --) {
+    //         tempStr = tempStr.replace(regDate, '|')
+    //     }
+    //     // while (tempStr.match(regDate).length > 1) {
+    //     // }
+    //     arrBills = tempStr.split('|');
+    // //     /^\b([1-9]|0[1-9]|1[0-2])\.([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\b$/g
+    //     console.log('str: ' + tempStr);
+    //     // if (arrDate.length !== arrBills.length)
+    //     //     return false;
+    //     result = arrBills.map((current, index) => {
+    //         let temp = current.split(regEnter);
+    //         if (temp.length !== 0)
+    //             return {
+    //                 bills: temp,
+    //                 date: arrDate[index]
+    //             }
+    //     });
+    //     console.log(result);
+    //     this.tempArr =  result;
+    // }
     getBillsArr() {
         let result,
-            arr = this.tempArr;
+            temp = this.inputStr,
+            arr = JSON.parse(temp);
 
         result = arr.reduce((accumulator, currentValue) => {
             let temp,
-                arrOfBills = currentValue.bills,
+                arrOfBills = currentValue.billsStr,
                 date = currentValue.date;
 
             temp = arrOfBills.map((current) => {
