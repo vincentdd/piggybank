@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
             console.log('add a lot')
             let billsArr = new BillsArr(temp);
             console.log(billsArr.actionArr);
-            billsArr.actionArr.map((cunrrent) => {
+            billsArr.inputStr.map((cunrrent) => {
                 dispatch({
                     type: 'ADD_ITEM',
                     ...cunrrent
@@ -65,17 +65,22 @@ const mapDispatchToProps = (dispatch) => ({
 
 class BillsArr {
     constructor (str){
-        this.inputStr = str;
+        this._inputStr = str;
     }
-    set inputStr (str){
-        this.spliteStr(str);
-        this.getBillsArr();
+    set inputStr(str){
+        this._inputStr = str;
+    }
+    get inputStr (){
+        let obj = JSON.parse(this._inputStr);
+        if (typeof obj === "object" && obj.length != 0)
+            this.getBillsArr(obj);
         this.actionArr = this.billsArr.map((current) => {
             this.getActionArr(current.bills, current.date)
         });
+        return this.actionArr;
     }
-    spliteStr(str) {
-        // const regDate = /\b(10|1?[12]|[1-9])\.(3[01]|10|20|[12][1-9])\b/g,
+    // spliteStr(str) {
+    //     const regDate = /\b(10|1?[12]|[1-9])\.(3[01]|10|20|[12][1-9])\b/g,
     //         regEnter = /\s/g;
     //     let arrDate = str.match(regDate).slice(1),
     //         arrBills,
@@ -103,14 +108,13 @@ class BillsArr {
     //     });
     //     console.log(result);
     //     this.tempArr =  result;
-    }
-    getBillsArr() {
-        let result,
-            arr = this.tempArr;
+    // }
+    getBillsArr(arr) {
+        let result;
 
         result = arr.reduce((accumulator, currentValue) => {
             let temp,
-                arrOfBills = currentValue.bills,
+                arrOfBills = currentValue.billsStr.split(' '),
                 date = currentValue.date;
 
             temp = arrOfBills.map((current) => {
@@ -120,7 +124,8 @@ class BillsArr {
                         date:date
                     }
             });
-            accumulator.concat(temp)
+            accumulator = accumulator.concat(temp);
+            return accumulator;
         }, []);
         console.log(result)
         this.billsArr = result;

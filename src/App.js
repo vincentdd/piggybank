@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import { combineReducers, createStore } from 'redux';
-import BillList from './Components/BillList';
-import Input from './Router/Input';
-import Home from './Router/Home';
 import store from './Reducer/reducer';
-import { Route, NavLink, Switch} from 'react-router-dom'
+import Home from './Router/Home'
+import Input from './Router/Input'
+import { BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom'
 
 class App extends Component {
     render() {
