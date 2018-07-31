@@ -3,24 +3,31 @@ import Checkbox from 'rc-checkbox';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const InputLabel = ({...props}) => {
-    let input = null;
-    return (
-        <div>
-            <input type="text" ref={ node => input = node} />
-            <button onClick={e => {
-                e.preventDefault();
-                const temp = input.value,
-                    flag = props.toggleFlag;
-                props.getInput(temp, flag);
-                input.value = '';
-            }}>Add</button>
+class InputLabel extends Component{
+    constructor(){
+        super();
+    }
+    handleClick(e){
+        e.preventDefault();
+        const temp = input.value,
+            flag = props.toggleFlag;
+        props.getInput(temp, flag);
+        input.value = '';
+        this.props.back();
+    }
+    render(){
+        let input,
+            props = this.props;
+        <form>
+            <label htmlFor="name">名称:</label>
+            <input name="name" type="text" ref={node => input = node}/>
+            <button onClick={(e) => this.handleClick(e)} > Add </ button>
             <label>
                 <Checkbox onChange={(e) => props.toggleCheckbox(e)} />
                 批量导入
             </label>
-        </div>
-    )
+        </form>
+    }
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -90,9 +97,6 @@ class BillsArr {
             year = new Date().getFullYear(),
             dateTime;
 
-        console.log(typeof date);
-        console.log(`${year}.${date}`);
-        console.log(typeof `${year}.${date}`);
         if(typeof date === 'object')
             dateTime = date;
         else if(typeof date === 'number')
