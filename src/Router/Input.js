@@ -10,7 +10,7 @@ const Input = ({ history }) => {
     };
     return (
         <div>
-            <NavLink onClick={ back }>Back</NavLink>
+            <div onClick={ back }>Back</div>
             <Route path="/inputitem" component={InputItem} />
         </div>
     )
