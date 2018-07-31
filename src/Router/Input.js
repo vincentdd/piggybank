@@ -11,7 +11,7 @@ const Input = ({ history }) => {
     return (
         <div>
             <div onClick={ back }>Back</div>
-            <Route path="/inputitem" component={InputItem} back={ () => back() }/>
+            <Route path="/inputitem" component={InputItem} />
         </div>
     )
 }

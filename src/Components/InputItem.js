@@ -8,25 +8,29 @@ class InputLabel extends Component{
         super();
     }
     handleClick(e){
+        let props = this.props,
+            input  = this.input;
         e.preventDefault();
         const temp = input.value,
             flag = props.toggleFlag;
         props.getInput(temp, flag);
         input.value = '';
-        this.props.back();
+        props.history.goBack();
     }
     render(){
-        let input,
-            props = this.props;
-        <form>
-            <label htmlFor="name">名称:</label>
-            <input name="name" type="text" ref={node => input = node}/>
-            <button onClick={(e) => this.handleClick(e)} > Add </ button>
-            <label>
-                <Checkbox onChange={(e) => props.toggleCheckbox(e)} />
-                批量导入
-            </label>
-        </form>
+        let props = this.props;
+        return(
+            <form>
+                <label htmlFor="name">名称:</label>
+                <input name="name" type="text" ref={(input) => this.input = input}/>
+                <button onClick={(e) => this.handleClick(e)} > Add </ button>
+                <label>
+                    <Checkbox onChange={(e) => props.toggleCheckbox(e)} />
+                    批量导入
+                </label>
+            </form>
+            )
+
     }
 }
 
@@ -66,10 +70,10 @@ class BillsArr {
     }
     get inputStr (){
         let obj = JSON.parse(this._inputStr);
-        if (typeof obj === "object" && obj.length != 0)
+        if (typeof obj === "object" && obj.length !== 0)
             this.getBillsArr(obj);
         this.actionArr = this.billsArr.map((current) => {
-            this.getActionArr(current.bills, current.date)
+            return this.getActionArr(current.bills, current.date);
         });
         return this.actionArr;
     }
@@ -104,7 +108,7 @@ class BillsArr {
         else
             dateTime = new Date();
         return {
-            name: temp[0],
+            text: temp[0],
             price: temp[1],
             date: dateTime
         }
