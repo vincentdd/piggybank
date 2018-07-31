@@ -67,7 +67,7 @@ function deepFreeze (o) {
     });
 
     return o;
-};
+}
 
 const bill = (state, action) => {
     switch (action.type){
@@ -113,11 +113,12 @@ const tag = (state, action) => {
 }
 
 const bills = (state = initial.bills || [], action) => {
+    let ITEM_ID = state.length;
     switch (action.type){
         case 'ADD_ITEM':
             return [
                 ...state,
-                bill(undefined, action)
+                bill(state, { ...action, id: ++ITEM_ID })
             ];
         case 'SET_TAG':
             return state.map(current => bill(current, action));

@@ -3,25 +3,31 @@ import Checkbox from 'rc-checkbox';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const InputLabel = ({...props}) => {
-    let input = null;
-    return (
+class InputLabel extends Component{
+    constructor(){
+        super();
+    }
+    handleClick(e){
+        e.preventDefault();
+        const temp = input.value,
+            flag = props.toggleFlag;
+        props.getInput(temp, flag);
+        input.value = '';
+        this.props.back();
+    }
+    render(){
+        let input,
+            props = this.props;
         <form>
-            <label for="name">名称:</label>
-            <input name="name" type="text" ref={ node => input = node} />
-            <button onClick={e => {
-                e.preventDefault();
-                const temp = input.value,
-                    flag = props.toggleFlag;
-                props.getInput(temp, flag);
-                input.value = '';
-            }}>Add</button>
+            <label htmlFor="name">名称:</label>
+            <input name="name" type="text" ref={node => input = node}/>
+            <button onClick={(e) => this.handleClick(e)} > Add </ button>
             <label>
                 <Checkbox onChange={(e) => props.toggleCheckbox(e)} />
                 批量导入
             </label>
         </form>
-    )
+    }
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -71,16 +77,13 @@ class BillsArr {
         let result;
 
         result = arr.reduce((accumulator, currentValue) => {
-            let temp,
+            let temp = [],
                 arrOfBills = currentValue.billsStr.split(' '),
                 date = currentValue.date;
 
-            temp = arrOfBills.map((current) => {
-                if (current !== '')
-                    return {
-                        str: current,
-                        date:date
-                    }
+            arrOfBills.forEach((current) => {
+                if (current !== undefined && current !== '')
+                    temp = [...temp, { bills: current, date:date}];
             });
             accumulator = accumulator.concat(temp);
             return accumulator;
@@ -96,8 +99,8 @@ class BillsArr {
 
         if(typeof date === 'object')
             dateTime = date;
-        else if(typeof date === 'string')
-            dateTime = new Date(`${year}.date`);
+        else if(typeof date === 'number')
+            dateTime = new Date(`${year}.${date}`);
         else
             dateTime = new Date();
         return {
@@ -115,10 +118,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(InputLabel);
-
-//
-// InputItem.propTypes = {
-//
-// }
-
-
