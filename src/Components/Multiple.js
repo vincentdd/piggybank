@@ -3,7 +3,7 @@ import Checkbox from 'rc-checkbox';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-class InputLabel extends Component{
+class Multiple extends Component{
     constructor(){
         super();
     }
@@ -21,7 +21,7 @@ class InputLabel extends Component{
         let props = this.props;
         return(
             <form>
-                <label htmlFor="name">名称:</label>
+                <label htmlFor="name">输入数组:</label>
                 <input name="name" type="text" ref={(input) => this.input = input}/>
                 <button onClick={(e) => this.handleClick(e)} > Add </ button>
                 <label>
@@ -121,4 +121,4 @@ const mapStateToProps = (state) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(InputLabel);
+)(Multiple);
