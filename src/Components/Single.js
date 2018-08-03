@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
+import '../styles/single.less';
 
 export default class Single extends Component{
     constructor(){
@@ -9,6 +11,7 @@ export default class Single extends Component{
         // let props = this.props,
         //     input  = this.input;
         e.preventDefault();
+        console.log(e.target.value)
         // const temp = input.value,
         //     flag = props.toggleFlag;
         // props.getInput(temp, flag);
@@ -19,13 +22,10 @@ export default class Single extends Component{
         let props = this.props;
         return(
             <form>
-                <label htmlFor="name">名称:</label>
-                <input name="name" type="text"/>
-                <label htmlFor="price">价格:</label>
-                <input name="name" type="text"/>
-                <label htmlFor="date">时间:</label>
-                <input name="date" type="date"/>
-                <input type="submit" value="提交" />
+                <label htmlFor="name">名称:<input className={classNames()} name="name" type="text"/></label>
+                <label htmlFor="price">价格:<input name="name" type="text"/></label>
+                <label htmlFor="date">时间:<input name="date" type="date"/></label>
+                <input type="submit" value="提交" onClick={e => this.handleClick(e)} />
             </form>
         )
 

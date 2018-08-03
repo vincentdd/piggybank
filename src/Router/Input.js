@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Multiple from '../Components/Multiple';
 import Single from '../Components/Single';
 import { Route, NavLink } from 'react-router-dom';
-import NotFound from './NotFound';
 
 const Input = ({ history, match }) => {
     const back = e => {
@@ -18,7 +17,6 @@ const Input = ({ history, match }) => {
             </ul>
             <Route path={`${match.url}/one`} component={Single} />
             <Route path={`${match.url}/list`} component={Multiple} />
-            <Route component={NotFound} />
         </div>
     )
 }
