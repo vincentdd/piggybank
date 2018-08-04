@@ -23,6 +23,8 @@ class InputLabel extends Component{
             <form>
                 <label htmlFor="name">名称:</label>
                 <input name="name" type="text" ref={(input) => this.input = input}/>
+                <label htmlFor="price">价格:</label>
+                <input name="price" type="text" />
                 <button onClick={(e) => this.handleClick(e)} > Add </ button>
                 <label>
                     <Checkbox onChange={(e) => props.toggleCheckbox(e)} />

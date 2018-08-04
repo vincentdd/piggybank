@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 const { Component } = React;
 
 export default class BillItem extends Component {
@@ -13,4 +14,8 @@ export default class BillItem extends Component {
             </div>
         )
     }
+}
+
+BillItem.propTypes = {
+    bill: PropTypes.object
 }
