@@ -178,6 +178,7 @@ const piggyBank = combineReducers({
 
 const store = createStore(piggyBank);
 export default store;
+
 // store.dispatch({
 //     type: 'ADD_ITEM',
 //     text: '003',
