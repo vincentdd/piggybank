@@ -3,48 +3,64 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import '../styles/single.less';
 
-export default class Single extends Component{
-    constructor(){
-        super();
+class Single extends Component{
+    constructor(props){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleChange(e){
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
     handleClick(e){
-        // let props = this.props,
-        //     input  = this.input;
+        let props = this.props,
+            date = this.state.date;
         e.preventDefault();
-        console.log(e.target.value)
-        // const temp = input.value,
-        //     flag = props.toggleFlag;
-        // props.getInput(temp, flag);
-        // input.value = '';
-        // props.history.goBack();
+        this.state.date = date instanceof Date
+            ? date
+            : new Date();
+        props.handleSubmit({
+            ...this.state
+        });
     }
     render(){
-        let props = this.props;
         return(
             <form>
-                <label htmlFor="name">名称:<input className={classNames()} name="name" type="text"/></label>
-                <label htmlFor="price">价格:<input name="name" type="text"/></label>
-                <label htmlFor="date">时间:<input name="date" type="date"/></label>
-                <input type="submit" value="提交" onClick={e => this.handleClick(e)} />
+                <label htmlFor="text">名称:<input onChange={this.handleChange} className={classNames()} name="text" type="text"/></label>
+                <label htmlFor="price">价格:<input onChange={this.handleChange} name="price" type="text"/></label>
+                <label htmlFor="tagId">时间:
+                    <select onChange={this.handleChange} name="tagId">
+                        <option value="value1">Value 1</option>
+                        <option value="value2" selected>Value 2</option>
+                        <option value="value3">Value 3</option>
+                    </select>
+                </label>
+                <label htmlFor="date">时间:<input onChange={this.handleChange} name="date" type="date"/></label>
+                <input type="submit" value="提交" onClick={this.handleClick} />
             </form>
         )
-
     }
 }
+const mapDispatchToProps = (dispatch) => ({
+    handleSubmit: (payload) => {
+        console.log('submit text')
+        dispatch({
+            type: 'ADD_ITEM',
+            ...payload
+        })
+    }
+});
+const mapStateToProps = (state) => ({
 
-// onClick={(e) => this.handleSubmit(e)}
-// const mapDispatchToProps = (dispatch) => ({
-//     handleSubmit: (e) => {
-//         e.preventDefault();
-//         console.log('submit text')
-//     }
-// });
-//
-// const mapStateToProps = (state) => ({
-//
-// })
-//
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(Single);
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Single);

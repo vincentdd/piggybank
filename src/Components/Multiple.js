@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Checkbox from 'rc-checkbox';
+// import Checkbox from 'rc-checkbox';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -18,34 +18,32 @@ class Multiple extends Component{
         props.history.goBack();
     }
     render(){
-        let props = this.props;
+        // let props = this.props;
         return(
             <form>
-                <label htmlFor="name">输入数组:</label>
-                <input name="name" type="text" ref={(input) => this.input = input}/>
+                <label htmlFor="name">输入数组:<input name="name" type="text" ref={(input) => this.input = input}/></label>
                 <button onClick={(e) => this.handleClick(e)} > Add </ button>
-                <label>
-                    <Checkbox onChange={(e) => props.toggleCheckbox(e)} />
-                    批量导入
-                </label>
+                {/*<label>*/}
+                    {/*<Checkbox onChange={(e) => props.toggleCheckbox(e)} />*/}
+                    {/*批量导入*/}
+                {/*</label>*/}
             </form>
-            )
-
+        )
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    toggleCheckbox: (e) => {
-        dispatch({
-            type: 'TOGGLE_FLAG',
-            flag: e.target.checked
-        })
-    },
-    getInput: (str, toggleFlag) => {
+    // toggleCheckbox: (e) => {
+    //     dispatch({
+    //         type: 'TOGGLE_FLAG',
+    //         flag: e.target.checked
+    //     })
+    // },
+    getInput: (str) => {
         let temp = str.trim()
-        if(temp == null){
+        if(temp === ''){
             return;
-        }else if(toggleFlag) {
+        }else {
             console.log('add a lot')
             let billsArr = new BillsArr(temp);
             console.log(billsArr.actionArr);
@@ -55,8 +53,6 @@ const mapDispatchToProps = (dispatch) => ({
                     ...cunrrent
                 });
             });
-        }else{
-            console.log('add one')
         }
     }
 });
@@ -114,10 +110,12 @@ class BillsArr {
         }
     }
 }
-
 const mapStateToProps = (state) => ({
     toggleFlag: state.toggleFlag
-})
+});
+// Multiple.propTypes = {
+//     getInput:PropTypes.func
+// };
 export default connect(
     mapStateToProps,
     mapDispatchToProps

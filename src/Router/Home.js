@@ -5,7 +5,7 @@ import { Route, NavLink } from 'react-router-dom';
 const Home = () => {
     return (
         <div>
-            <NavLink to="/add">Add</NavLink>
+            <NavLink to="/add/one">Add</NavLink>
             <BillList />
         </div>
     )

@@ -1,4 +1,4 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers } from 'redux';
 //import {createStore} from "redux/index";
 
 const initial = {
@@ -176,8 +176,8 @@ const piggyBank = combineReducers({
     toggleFlag
 })
 
-const store = createStore(piggyBank);
-export default store;
+export default piggyBank;
+
 // store.dispatch({
 //     type: 'ADD_ITEM',
 //     text: '003',

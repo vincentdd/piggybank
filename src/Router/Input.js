@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import Multiple from '../Components/Multiple';
 import Single from '../Components/Single';
 import { Route, NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+import '../styles/input.css';
 
 const Input = ({ history, match }) => {
-    const back = e => {
-        e.stopPropagation();
-        history.goBack();
-    };
     return (
         <div>
-            <div onClick={ back }>Back</div>
+            <NavLink to={`/`}>Back</NavLink>
             <ul>
-                <NavLink to={`${match.url}/list`}>Add List</NavLink>
-                <NavLink to={`${match.url}/one`}>Add One</NavLink>
+                <NavLink className={classNames('nav-link')} to={`${match.url}/list`} activeClassName='selected'>Add List</NavLink>
+                <NavLink className={classNames('nav-link')} to={`${match.url}/one`} activeClassName='selected'>Add One</NavLink>
             </ul>
             <Route path={`${match.url}/one`} component={Single} />
             <Route path={`${match.url}/list`} component={Multiple} />
