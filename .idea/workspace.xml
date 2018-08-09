@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cd3cbad3-fe0f-4f98-bdc1-d418e0352813" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/Tag.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Tags.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cd3cbad3-fe0f-4f98-bdc1-d418e0352813" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -198,7 +194,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-7" />
     <option name="width" value="1198" />
     <option name="height" value="672" />
@@ -306,12 +302,12 @@
       <workItem from="1533038003875" duration="3831000" />
       <workItem from="1533091747317" duration="19283000" />
       <workItem from="1533361593134" duration="11235000" />
-      <workItem from="1533545102138" duration="11235000" />
+      <workItem from="1533545102138" duration="11833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129950000" />
+    <option name="totallyTimeSpent" value="130548000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
