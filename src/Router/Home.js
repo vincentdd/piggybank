@@ -6,6 +6,7 @@ const Home = () => {
     return (
         <div>
             <NavLink to="/add/one">Add</NavLink>
+            <NavLink to="/tags">View Tags</NavLink>
             <BillList />
         </div>
     )

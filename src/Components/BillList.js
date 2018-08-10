@@ -9,7 +9,7 @@ class List extends Component {
     }
     render(){
         console.log(this.props.bills);
-        const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id}></BillItem>)
+        const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id} />);
         return (<div>
             {dom}
         </div>)
@@ -64,11 +64,11 @@ function filterSelect(bills, filter){
 
 const mapStateToProps = (state) => ({
     bills:filterSelect(state.bills, state.filter)
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
 
-})
+});
 
 export default connect(
     mapStateToProps,
