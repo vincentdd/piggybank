@@ -10,7 +10,7 @@ const Input = ({ history, match }) => {
         <div>
             <NavLink to={`/`}>Back</NavLink>
             <ul>
-                <NavLink className={classNames('nav-link')} to={`${match.url}/list`} activeClassName='selected'>Add List</NavLink>
+                <NavLink className={classNames('nav-link test1 test2')} to={`${match.url}/list`} activeClassName='selected'>Add List</NavLink>
                 <NavLink className={classNames('nav-link')} to={`${match.url}/one`} activeClassName='selected'>Add One</NavLink>
             </ul>
             <Route path={`${match.url}/one`} component={Single} />
