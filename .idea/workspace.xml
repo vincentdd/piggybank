@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cd3cbad3-fe0f-4f98-bdc1-d418e0352813" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Components/TagForm.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Components/TagModal.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Modal.js" afterPath="$PROJECT_DIR$/src/Components/Modal.js" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Tag.js" afterPath="$PROJECT_DIR$/src/Components/Tag.js" />
-      <change beforePath="$PROJECT_DIR$/src/Reducer/reducer.js" afterPath="$PROJECT_DIR$/src/Reducer/reducer.js" />
-    </list>
+    <list default="true" id="cd3cbad3-fe0f-4f98-bdc1-d418e0352813" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -345,12 +338,12 @@
       <workItem from="1533816450112" duration="3003000" />
       <workItem from="1533941982679" duration="649000" />
       <workItem from="1533943767304" duration="10217000" />
-      <workItem from="1534042532699" duration="1977000" />
+      <workItem from="1534042532699" duration="2391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152775000" />
+    <option name="totallyTimeSpent" value="153189000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
