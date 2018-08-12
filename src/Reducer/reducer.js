@@ -5,15 +5,18 @@ const initial = {
     tags: [
         {
             id: 0,
-            text: '餐饮'
+            text: '餐饮',
+            color:null
         },
         {
             id: 1,
-            text: '娱乐'
+            text: '娱乐',
+            color:null
         },
         {
             id: 2,
-            text: '交通'
+            text: '交通',
+            color:null
         }
     ],
     bills: [
