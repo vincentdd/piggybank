@@ -2,21 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const { Component } = React;
 
-export default class Modal extends Component {
+const Modal = WrappedComponent => class extends Component {
     constructor() {
         super();
-        this.setState({visiable: false});
-        this.toggleVisible = this.toggleVisible.bind(this);
+        this.setState({visiable: false, fields: {}});
+        // this.toggleVisible = this.toggleVisible.bind(this);
     }
-    toggleVisible(){
+
+    onChange = key => e => {
+        this.setState({
+            fields: {
+                ...this.state.fields,
+                [key]: e.target.value,
+            }
+        })
+    }
+
+    getField = fieldName => {
+        return {
+            onChange: this.onChange(fieldName),
+        }
+    }
+
+    toggleVisible = () => {
         const visiableNow = this.state.visiable;
         this.setState({visiable: !visiableNow});
     }
+
     render(){
+        const props = {
+            ...this.props,
+            handleSubmit: this.handleSubmit,
+            getField: this.getField,
+        }
+
         return (
-            <div>
+            <WrappedComponent {...props}>
                 <a href="javascript:void(0);" onClick={this.toggleVisible()}>X</a>
-            </div>
+            </WrappedComponent>
         )
     }
 }
@@ -25,3 +48,5 @@ export default class Modal extends Component {
 Modal.propTypes = {
     toggleVisible: PropTypes.func
 };
+
+export default Modal;
