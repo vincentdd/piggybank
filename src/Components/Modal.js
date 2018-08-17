@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const { Component } = React;
 
-export default class Modal extends Component {
+const Modal = WrappedComponent => class extends Component {
     constructor() {
         super();
         this.setState({visiable: false});
@@ -20,6 +20,7 @@ export default class Modal extends Component {
         )
     }
 }
+
 //https://github.com/sunyongjian/blog/issues/25
 //https://github.com/ckinmind/ReactCollect/issues/20
 Modal.propTypes = {

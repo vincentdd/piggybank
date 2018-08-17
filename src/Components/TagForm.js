@@ -3,12 +3,18 @@ import React from 'react';
 // import {connect} from "react-redux";
 const { Component } = React;
 
-const TagForm = () => {
-
-    return (
-        <form>
-            <label htmlFor="text"><input type="text" name="text"/></label>
-            <input type="submit" value={"提交"}/>
-        </form>
-    )
+class TagForm extends Component{
+    render() {
+        return (
+            <form>
+                <div>
+                    <label id="tagName">
+                        标签名：
+                    </label>
+                    <input name="tagName" {...this.props.getField('tagName')}/>
+                </div>
+                <div onClick={this.props.handleSubmit}>提交</div>
+            </form>
+        )
+    }
 }
