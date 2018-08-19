@@ -4,7 +4,7 @@ import Tag from './Tag';
 import {connect} from "react-redux";
 const { Component } = React;
 
-class Tags extends Component {
+export default class Tags extends Component {
     constructor() {
         super();
     }
@@ -13,7 +13,7 @@ class Tags extends Component {
             tags = this.props.tags;
 
         childNode = tags.map((current) => {
-            return <Tag {...current} />
+            return <Tag key={current.id} {...current}/>
         });
         return (
             <ul>
@@ -23,15 +23,15 @@ class Tags extends Component {
     }
 }
 Tags.propTypes = {
-    tags: PropTypes.object
+    tags: PropTypes.array
 };
-const mapStateToProps = (state) => ({
-    tags: state.tags
-});
-const mapDispatchToProps = (dispatch) => ({
-
-});
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Tags);
+// const mapStateToProps = (state) => ({
+//     tags: state.tags
+// });
+// const mapDispatchToProps = (dispatch) => ({
+//
+// });
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Tags);

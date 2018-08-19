@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const { Component } = React;
 
 const Tag = (props) => (
-    <li key={props.id}>
+    <li>
         {props.text}<a href="javascript:void(0);" >edit</a>
     </li>
 );
