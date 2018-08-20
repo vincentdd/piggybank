@@ -1,6 +1,7 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import {connect} from "react-redux";
+import Modal from 'Modal';
 const { Component } = React;
 
 class TagForm extends Component{
@@ -18,3 +19,10 @@ class TagForm extends Component{
         )
     }
 }
+
+TagForm.propTypes = {
+    getField: PropTypes.func,
+    handleSubmit: PropTypes.func
+};
+
+export default Modal(TagForm);

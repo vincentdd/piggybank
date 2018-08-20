@@ -4,7 +4,7 @@ const { Component } = React;
 
 const Tag = (props) => (
     <li key={props.id}>
-        {props.text}<span>edit</span>
+        {props.text}<a href="javascript:void(0);" >edit</a>
     </li>
 );
 Tag.propTypes = {
