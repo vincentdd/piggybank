@@ -10,10 +10,11 @@ export default class Tags extends Component {
     }
     render(){
         let childNode,
-            tags = this.props.tags;
+            props = this.props,
+            tags = props.tags;
 
         childNode = tags.map((current) => {
-            return <Tag key={current.id} {...current}/>
+            return <Tag key={current.id} {...current} handleEdit={props.handleEdit} />
         });
         return (
             <ul>
@@ -23,7 +24,7 @@ export default class Tags extends Component {
     }
 }
 Tags.propTypes = {
-    tags: PropTypes.array
+    tags: PropTypes.array.isRequired
 };
 // const mapStateToProps = (state) => ({
 //     tags: state.tags
