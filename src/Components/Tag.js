@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 const { Component } = React;
 
 class Tag extends Component {
-    constructor(){
-        super();
-        this.state = {edit: false, value: ""};
+    constructor(props){
+        super(props);
+        this.state = {edit: this.props.editFlag, value: ""};
         this.handleToggle = this.handleToggle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
     handleToggle(){
         const edit = this.state.edit;
+        this.props.handleShowInput();
         this.setState({edit: !edit});
     }
     handleChange(e) {
@@ -26,7 +27,7 @@ class Tag extends Component {
         const props = this.props,
                 editFlag = this.state.edit;
         if (!editFlag)
-            return (<li>{props.text}<a href="javascript:void(0);" onClick={this.handleToggle} >edit</a></li>);
+            return (<li >{props.text}<a href="javascript:void(0);" onClick={this.handleToggle} >edit</a></li>);
         else
             return (<div onSubmit={this.handleSubmit}>
                         <form>
