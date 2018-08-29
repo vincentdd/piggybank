@@ -23,7 +23,7 @@ class TagsList extends Component{
         return (
             <div>
                 <NavLink to={`/`}>Back</NavLink>
-                <Tags tags={tags}/>
+                <Tags tags={tags} handleClick={() => props.handleVisibleChange()} />
                 {visiableFlag && <TagModal />}
             </div>
         )
