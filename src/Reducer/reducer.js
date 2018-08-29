@@ -51,8 +51,9 @@ const initial = {
     ],
     filter: 'day',
     model: 'list',
-    toggleFlag: false
-}
+    toggleFlag: false,
+    visiableFlag: false
+};
 
 let ITEM_ID = initial.bills.length,
     TAG_ID = initial.tags.length;
@@ -170,13 +171,23 @@ const toggleFlag = (state = initial.toggleFlag ||  false, action) => {
             return state;
     }
 }
+
+const toggleVisiableFlag = (state = initial.visiableFlag ||  false, action) => {
+    switch (action.type){
+        case 'TOGGLE_VISIABLE_FLAG':
+            return action.visiableFlag;
+        default:
+            return state;
+    }
+}
 // const { combineReducers, cr eateStore } = Redux;
 const piggyBank = combineReducers({
     bills,
     tags,
     filter,
     model,
-    toggleFlag
+    toggleFlag,
+    toggleVisiableFlag
 })
 
 export default piggyBank;

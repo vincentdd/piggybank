@@ -5,7 +5,6 @@ const { Component } = React;
 const Modal = WrappedComponent => class extends Component {
     constructor() {
         super();
-        this.setState({visiable: false, fields: {}});
         // this.toggleVisible = this.toggleVisible.bind(this);
     }
 
@@ -24,10 +23,10 @@ const Modal = WrappedComponent => class extends Component {
         }
     }
 
-    toggleVisible = () => {
-        const visiableNow = this.state.visiable;
-        this.setState({visiable: !visiableNow});
-    }
+    // toggleVisible = () => {
+    //     const visiableNow = this.state.visiable;
+    //     this.setState({visiable: !visiableNow});
+    // }
 
     render(){
         const props = {
@@ -35,10 +34,11 @@ const Modal = WrappedComponent => class extends Component {
             handleSubmit: this.handleSubmit,
             getField: this.getField,
         }
+        // this.setState({visiable: false, fields: {}});
 
         return (
             <WrappedComponent {...props}>
-                <a href="javascript:void(0);" onClick={this.toggleVisible()}>X</a>
+                <a href="javascript:void(0);">X</a>
             </WrappedComponent>
         )
     }
