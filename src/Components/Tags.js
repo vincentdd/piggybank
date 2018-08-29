@@ -10,6 +10,15 @@ class Tags extends Component {
         const length = this.props.tags.length;
         this.state = {editArr: Array(length).fill(false ,0)};
         this.handleShowInput = this.handleShowInput.bind(this);
+        this.toggleVisiable = this.toggleVisiable.bind(this);
+    }
+    toggleVisiable(index){
+        let temp = this.state.editArr,
+            editArr;
+        editArr = temp.map((current, key) => {
+            return (key === index) //当key不等于选中的元素或为空时，将数组内的标记置为false，否则置为true
+        });
+        this.setState({editArr: [...editArr]});
     }
     handleShowInput(){
         const length = this.props.tags.length,
@@ -23,7 +32,7 @@ class Tags extends Component {
             editArr = this.state.editArr;
 
         childNode = tags.map((current) => {
-            return <Tag key={current.id} {...current} handleEdit={props.handleEdit} handleShowInput={this.handleShowInput} editFlag={editArr[current.id]} />
+            return <Tag key={current.id} {...current} toggleVisiable={this.toggleVisiable} handleEdit={props.handleEdit} handleShowInput={this.handleShowInput} editFlag={editArr[current.id]} />
         });
         return (
             <ul>

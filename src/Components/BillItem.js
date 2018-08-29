@@ -7,10 +7,11 @@ export default class BillItem extends Component {
         super();
     }
     render(){
+        const props = this.props;
         return (
             <div>
-                {this.props.bill.text}
-                {this.props.bill.price}
+                {props.bill.text}
+                {props.bill.price}
             </div>
         )
     }
@@ -18,4 +19,4 @@ export default class BillItem extends Component {
 
 BillItem.propTypes = {
     bill: PropTypes.object
-}
+};

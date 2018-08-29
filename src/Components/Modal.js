@@ -33,7 +33,7 @@ const Modal = WrappedComponent => class extends Component {
             ...this.props,
             handleSubmit: this.handleSubmit,
             getField: this.getField,
-        }
+        };
         // this.setState({visiable: false, fields: {}});
 
         return (
@@ -42,9 +42,8 @@ const Modal = WrappedComponent => class extends Component {
             </WrappedComponent>
         )
     }
-}
-//https://github.com/sunyongjian/blog/issues/25
-//https://github.com/ckinmind/ReactCollect/issues/20
+};
+
 Modal.propTypes = {
     toggleVisible: PropTypes.func
 };
