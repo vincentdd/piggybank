@@ -100,10 +100,10 @@ const tag = (state, action) => {
     switch (action.type){
         case 'ADD_TAG':
             return {
-                id: ++TAG_ID,
+                id: action.id,
                 text: action.text
             };
-        case 'SET_TAG':
+        case 'EDIT_TAG':
             if(state.id !== action.id){
                 return state;
             }
@@ -122,7 +122,7 @@ const bills = (state = initial.bills || [], action) => {
         case 'ADD_ITEM':
             return [
                 ...state,
-                bill(state, { ...action, id: ++ITEM_ID })
+                bill(undefined, { ...action, id: ++ITEM_ID })
             ];
         case 'SET_TAG':
             return state.map(current => bill(current, action));
@@ -136,9 +136,9 @@ const tags = (state = initial.tags || [], action) => {
         case 'ADD_TAG':
             return [
                 ...state,
-                tag(undefined, action)
+                tag(undefined, { ...action, id: ++TAG_ID })
             ];
-        case 'SET_TAG':
+        case 'EDIT_TAG':
             return state.map(current => tag(current, action));
         default:
             return state;
