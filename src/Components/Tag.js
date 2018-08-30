@@ -5,16 +5,19 @@ const { Component } = React;
 class Tag extends Component {
     constructor(props){
         super(props);
-        this.state = {edit: this.props.editFlag, value: ""};
+        //this.state = {edit: this.props.editFlag, value: ""};
         this.handleToggle = this.handleToggle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
     handleToggle(){
-        const edit = this.state.edit;
-        this.props.handleShowInput();
-        this.setState({edit: !edit});
+
     }
+    // handleToggle(){
+    //     const edit = this.state.edit;
+    //     this.props.handleShowInput();
+    //     this.setState({edit: !edit});
+    // }
     handleChange(e) {
         this.setState({value: e.target.value});
     }
