@@ -1,12 +1,12 @@
 import React from 'react';
 import {createPortal} from 'react-dom';
 import PropTypes from 'prop-types';
-import ItemForm from 'ItemForm';
+//import ItemForm from 'ItemForm';
 const { Component } = React;
 
 
 //const Modal = WrappedComponent => class extends Component {
-const Modal = WrappedComponent => class extends Component {
+class Modal extends Component {
         constructor() {
         super(...arguments);
         // this.toggleVisible = this.toggleVisible.bind(this);
@@ -44,7 +44,7 @@ const Modal = WrappedComponent => class extends Component {
         // this.setState({visiable: false, fields: {}});
 
         return createPortal(
-            <div class="dialog">
+            <div className="dialog">
                 {this.props.children}
             </div>,
             this.node
@@ -55,7 +55,7 @@ const Modal = WrappedComponent => class extends Component {
         window.document.body.removeChild(this.node);
     }
 
-};
+}
 
 Modal.propTypes = {
     //toggleVisible: PropTypes.func
