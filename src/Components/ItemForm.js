@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from './Modal';
 const { Component } = React;
 
-class TagForm extends Component{
+class ItemForm extends Component{
     render() {
         return (
             <form>
@@ -20,9 +20,9 @@ class TagForm extends Component{
     }
 }
 
-TagForm.propTypes = {
+ItemForm.propTypes = {
     getField: PropTypes.func,
     handleSubmit: PropTypes.func
 };
 
-export default Modal(TagForm);
+export default Modal(ItemForm);

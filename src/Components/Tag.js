@@ -5,36 +5,29 @@ const { Component } = React;
 class Tag extends Component {
     constructor(props){
         super(props);
-        //this.state = {edit: this.props.editFlag, value: ""};
-        this.handleToggle = this.handleToggle.bind(this);
+        this.state = {value: props.text};
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-    handleToggle(){
-
-    }
-    // handleToggle(){
-    //     const edit = this.state.edit;
-    //     this.props.handleShowInput();
-    //     this.setState({edit: !edit});
-    // }
     handleChange(e) {
         this.setState({value: e.target.value});
     }
     handleSubmit(e){
         e.preventDefault();
-        this.props.handleEdit({id: this.props.id, text: this.state.value});
-        this.handleToggle();
+        const id = this.props.id,
+            value = this.state.value;
+        this.props.handleEdit({id: id, text: value});
+        this.props.toggleVisiable();
     }
     render(){
         const props = this.props,
-                editFlag = this.state.edit;
+                editFlag = props.editFlag;
         if (!editFlag)
-            return (<li >{props.text}<a href="javascript:void(0);" onClick={this.handleToggle} >edit</a></li>);
+            return (<li >{props.text}<a href="javascript:void(0);" onClick={ () => props.toggleVisiable(props.id)} >edit</a></li>);
         else
             return (<div onSubmit={this.handleSubmit}>
                         <form>
-                            <input type="text" defaultValue={props.text} onChange={this.handleChange} />
+                            <input type="text" value={props.text} onChange={this.handleChange} />
                             <input type="submit" value="Submit" />
                         </form>
                     </div>)
