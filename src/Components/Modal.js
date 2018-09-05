@@ -15,20 +15,6 @@ class Modal extends Component {
         doc.body.appendChild(this.node);
     }
 
-    onChange = key => e => {
-        this.setState({
-            fields: {
-                ...this.state.fields,
-                [key]: e.target.value,
-            }
-        })
-    };
-
-    getField = fieldName => {
-        return {
-            onChange: this.onChange(fieldName),
-        }
-    };
 
     // toggleVisible = () => {
     //     const visiableNow = this.state.visiable;

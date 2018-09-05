@@ -1,7 +1,7 @@
 import React from 'react';
 import BillItem from "./BillItem";
 import {connect} from 'react-redux';
-import Modal from './Modal'
+import BillEdit from './ItemForm'
 
 const { Component } = React;
 class List extends Component {
@@ -13,7 +13,7 @@ class List extends Component {
         const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id} />);
         return (<div>
             {dom}
-            <Modal />
+            <BillEdit />
         </div>)
     }
 }
