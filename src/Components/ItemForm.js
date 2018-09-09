@@ -33,7 +33,7 @@ class ItemForm extends Component{
                     </label>
                     <input name="tagName" {...this.getField('tagName')}/>
                 </div>
-                <input type="submit" onSubmit={this.handleSubmit}>提交</input>
+                <input type="submit" onSubmit={this.handleSubmit}></input>
             </form>
         )
     }
