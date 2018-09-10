@@ -1,5 +1,6 @@
 import React from 'react';
 import {createPortal} from 'react-dom';
+import Portal from './Portal';
 import PropTypes from 'prop-types';
 //import ItemForm from 'ItemForm';
 const { Component } = React;
@@ -30,9 +31,9 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
 
         return createPortal(
-            <div className="dialog">
-                {this.props.children}
-            </div>,
+            <Portal>
+                
+            </Portal>,
             this.node
         );
     }
