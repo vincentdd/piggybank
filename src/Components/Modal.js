@@ -18,13 +18,9 @@ class Modal extends Component {
     }
 
     toggleVisible(){
-            this.setState();
+            const isOpen = this.state.isOpen;
+            this.setState({isOpen: !isOpen});
     }
-
-    // toggleVisible = () => {
-    //     const visiableNow = this.state.visiable;
-    //     this.setState({visiable: !visiableNow});
-    // }
 
     render(){
         // const props = {
@@ -34,8 +30,10 @@ class Modal extends Component {
         // };
         // this.setState({visiable: false, fields: {}});
 
+        const state = this.state,
+            { isOpen } = state;
         return createPortal(
-            <Portal>
+            <Portal isOpen={isOpen} >
                 {this.props.children}
             </Portal>,
             this.node
