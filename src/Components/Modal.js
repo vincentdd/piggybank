@@ -8,14 +8,18 @@ const { Component } = React;
 
 //const Modal = WrappedComponent => class extends Component {
 class Modal extends Component {
-        constructor() {
-        super(...arguments);
+        constructor(props) {
+        super(props);
         // this.toggleVisible = this.toggleVisible.bind(this);
         const doc = window.document;
+        this.state = {isOpen: false};
         this.node = doc.createElement('div');
         doc.body.appendChild(this.node);
     }
 
+    toggleVisible(){
+            this.setState();
+    }
 
     // toggleVisible = () => {
     //     const visiableNow = this.state.visiable;
@@ -31,9 +35,9 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
 
         return createPortal(
-            <div className="dialog">
+            <Portal>
                 {this.props.children}
-            </div>,
+            </Portal>,
             this.node
         );
     }

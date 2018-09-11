@@ -1,8 +1,11 @@
 import React from 'react';
 import {createPortal} from 'react-dom';
 import PropTypes from 'prop-types';
+//import ItemForm from 'ItemForm';
 const { Component } = React;
 
+
+//const Modal = WrappedComponent => class extends Component {
 class Portal extends Component {
     constructor(props) {
         super(props);
@@ -14,11 +17,12 @@ class Portal extends Component {
 
     render(){
         const isOpen = this.props.isOpen;
-
-        return !isOpen ? null
-            :createPortal(
-            <div className="dialog">
-                {this.props.children}
+        return !isOpen === true ? null
+            : createPortal(
+            <div className={"overlay"}>
+                <div className="content">
+                    {this.props.children}
+                </div>
             </div>,
             this.node
         );
