@@ -19,9 +19,9 @@ class Single extends Component{
         });
     }
     handleClick(e){
+        e.preventDefault();
         let props = this.props,
             date = this.state.date;
-        e.preventDefault();
         this.state.date = date instanceof Date
             ? date
             : new Date();
