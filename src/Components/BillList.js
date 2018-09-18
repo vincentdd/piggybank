@@ -7,14 +7,39 @@ const { Component } = React;
 class List extends Component {
     constructor() {
         super();
+        this.state = {modalIsOpen: false};
+        this.openModal.bind(this);
+        this.closeModal.bind(this);
+        this.hello.bind(this);
+    }
+    hello(){
+        // this.openModal
+        console.log("test");
+        console.log(this);
+        debugger;
+        // props.openModal
+    }
+    openModal() {
+        // billObj
+        console.log(this)
+        debugger;
+        this.setState({modalIsOpen: true});
+        console.log(this.state.modalIsOpen)
+    }
+    closeModal() {
+        this.setState({modalIsOpen: false});
     }
     render(){
-        console.log(this.props.bills);
-        const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id} />);
-        return (<ul>
-            {dom}
-            <BillEdit />
-        </ul>)
+        const state = this.state,
+            dom = this.props.bills.map(
+            current => <BillItem bill = {current} key = {current.id} handleOpenModal={this.hello} closeModal={this.closeModal} />
+        );
+        return (
+            <ul>
+                {dom}
+                <BillEdit isOpen={state.modalIsOpen}/>
+            </ul>
+        )
     }
 }
 

@@ -12,15 +12,16 @@ class Modal extends Component {
         super(props);
         // this.toggleVisible = this.toggleVisible.bind(this);
         const doc = window.document;
-        this.state = {isOpen: false};
         this.node = doc.createElement('div');
         doc.body.appendChild(this.node);
     }
-
-    toggleVisible(){
-            const isOpen = this.state.isOpen;
-            this.setState({isOpen: !isOpen});
-    }
+    static defaultProps = {
+        isOpen: false
+    };
+    // toggleVisible(){
+    //         const isOpen = this.state.isOpen;
+    //         this.setState({isOpen: !isOpen});
+    // }
 
     render(){
         // const props = {
@@ -29,15 +30,17 @@ class Modal extends Component {
         //     getField: this.getField,
         // };
         // this.setState({visiable: false, fields: {}});
-
-        const state = this.state,
-            { isOpen } = state;
-        return createPortal(
-            <Portal isOpen={isOpen} >
-                {this.props.children}
-            </Portal>,
-            this.node
-        );
+        const props = this.props,
+            { isOpen } = props;
+        if(!isOpen)
+            return null;
+        else
+            return createPortal(
+                <Portal >
+                    {this.props.children}
+                </Portal>,
+                this.node
+            );
     }
 
     componentWillUnmount() {
