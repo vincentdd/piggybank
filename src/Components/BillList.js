@@ -11,10 +11,10 @@ class List extends Component {
     render(){
         console.log(this.props.bills);
         const dom = this.props.bills.map(current => <BillItem bill = {current} key = {current.id} />);
-        return (<div>
+        return (<ul>
             {dom}
             <BillEdit />
-        </div>)
+        </ul>)
     }
 }
 

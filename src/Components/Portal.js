@@ -29,7 +29,7 @@ class Portal extends Component {
     }
 
     componentWillUnmount() {
-        window.document.body.removeChild(this.node);
+        // window.document.body.removeChild(this.node);
     }
 
 }

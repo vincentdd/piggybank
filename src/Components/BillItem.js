@@ -9,10 +9,11 @@ export default class BillItem extends Component {
     render(){
         const props = this.props;
         return (
-            <div>
+            <li>
                 {props.bill.text}
                 {props.bill.price}
-            </div>
+                <a href="javascript:void(0)">edit</a>
+            </li>
         )
     }
 }
