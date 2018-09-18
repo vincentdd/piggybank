@@ -46,6 +46,7 @@ class BillEdit extends Component {
     render(){
         return <Modal>
             <ItemForm />
+            <p>test</p>
         </Modal>
     }
 }

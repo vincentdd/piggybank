@@ -8,21 +8,12 @@ class List extends Component {
     constructor() {
         super();
         this.state = {modalIsOpen: false};
-        this.openModal.bind(this);
-        this.closeModal.bind(this);
-        this.hello.bind(this);
-    }
-    hello(){
-        // this.openModal
-        console.log("test");
-        console.log(this);
-        debugger;
-        // props.openModal
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     openModal() {
         // billObj
-        console.log(this)
-        debugger;
+        console.log(this);
         this.setState({modalIsOpen: true});
         console.log(this.state.modalIsOpen)
     }
@@ -32,7 +23,7 @@ class List extends Component {
     render(){
         const state = this.state,
             dom = this.props.bills.map(
-            current => <BillItem bill = {current} key = {current.id} handleOpenModal={this.hello} closeModal={this.closeModal} />
+            current => <BillItem bill = {current} key = {current.id} handleOpenModal={this.openModal} closeModal={this.closeModal} />
         );
         return (
             <ul>
