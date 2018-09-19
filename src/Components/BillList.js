@@ -1,7 +1,8 @@
 import React from 'react';
 import BillItem from "./BillItem";
 import {connect} from 'react-redux';
-import BillEdit from './ItemForm'
+import Modal from "./Modal";
+import ItemForm from './ItemForm';
 
 const { Component } = React;
 class List extends Component {
@@ -12,10 +13,7 @@ class List extends Component {
         this.closeModal = this.closeModal.bind(this);
     }
     openModal() {
-        // billObj
-        console.log(this);
         this.setState({modalIsOpen: true});
-        console.log(this.state.modalIsOpen)
     }
     closeModal() {
         this.setState({modalIsOpen: false});
@@ -28,7 +26,9 @@ class List extends Component {
         return (
             <ul>
                 {dom}
-                <BillEdit isOpen={state.modalIsOpen}/>
+                <Modal isOpen={state.modalIsOpen}>
+                    <ItemForm />
+                </Modal>
             </ul>
         )
     }

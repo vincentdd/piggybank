@@ -38,26 +38,28 @@ ItemForm.propTypes = {
     getField: PropTypes.func,
     handleSubmit: PropTypes.func
 };
+//
+// class BillEdit extends Component {
+//     constructor(){
+//         super()
+//     }
+//     render(){
+//         return (
+//             <Modal>
+//                 <ItemForm />
+//                 <p>test</p>
+//             </Modal>
+//         )
+//     }
+// }
+// const mapDispatchToProps = (dispatch) => ({
+//     handleSubmit: (payload) => {
+//         console.log('submit text')
+//         dispatch({
+//             type: 'ADD_ITEM',
+//             ...payload
+//         })
+//     }
+// });
 
-class BillEdit extends Component {
-    constructor(){
-        super()
-    }
-    render(){
-        return <Modal>
-            <ItemForm />
-            <p>test</p>
-        </Modal>
-    }
-}
-const mapDispatchToProps = (dispatch) => ({
-    handleSubmit: (payload) => {
-        console.log('submit text')
-        dispatch({
-            type: 'ADD_ITEM',
-            ...payload
-        })
-    }
-});
-
-export default BillEdit;
+export default ItemForm;

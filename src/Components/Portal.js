@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 //import ItemForm from 'ItemForm';
 const { Component } = React;
 
-
 //const Modal = WrappedComponent => class extends Component {
 class Portal extends Component {
     constructor(props) {
@@ -18,14 +17,11 @@ class Portal extends Component {
     render(){
         const isOpen = this.props.isOpen;
         return !isOpen === true ? null
-            : createPortal(
-            <div className={"overlay"}>
+            : <div className={"overlay"}>
                 <div className="content">
                     {this.props.children}
                 </div>
-            </div>,
-            this.node
-        );
+            </div>
     }
 
     componentWillUnmount() {

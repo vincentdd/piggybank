@@ -5,23 +5,24 @@ import PropTypes from 'prop-types';
 //import ItemForm from 'ItemForm';
 const { Component } = React;
 
+function getParentElement(parentSelector) {
+    return parentSelector();
+}
 
 //const Modal = WrappedComponent => class extends Component {
 class Modal extends Component {
         constructor(props) {
         super(props);
         // this.toggleVisible = this.toggleVisible.bind(this);
-        const doc = window.document;
-        this.node = doc.createElement('div');
-        doc.body.appendChild(this.node);
     }
     static defaultProps = {
-        isOpen: false
+        isOpen: false,
+        parentSelector: () => document.body
     };
-    // toggleVisible(){
-    //         const isOpen = this.state.isOpen;
-    //         this.setState({isOpen: !isOpen});
-    // }
+    componentDidMount(){
+        const parent = getParentElement(this.porps.parentSelector);
+        parent.appendChild(this.node);
+    };
 
     render(){
         // const props = {
@@ -32,6 +33,8 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
         const props = this.props,
             { isOpen } = props;
+
+        console.log(isOpen);
         if(!isOpen)
             return null;
         else
