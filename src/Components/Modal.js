@@ -20,7 +20,7 @@ class Modal extends Component {
         parentSelector: () => document.body
     };
     componentDidMount(){
-        const parent = getParentElement(this.porps.parentSelector);
+        const parent = getParentElement(this.props.parentSelector);
         parent.appendChild(this.node);
     };
 
@@ -33,8 +33,8 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
         const props = this.props,
             { isOpen } = props;
+        this.node = document.createElement("div");
 
-        console.log(isOpen);
         if(!isOpen)
             return null;
         else
