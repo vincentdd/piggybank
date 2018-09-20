@@ -20,7 +20,7 @@ class Modal extends Component {
         parentSelector: () => document.body
     };
     componentDidMount(){
-        const parent = getParentElement(this.porps.parentSelector);
+        const parent = getParentElement(this.props.parentSelector);
         parent.appendChild(this.node);
     };
 
