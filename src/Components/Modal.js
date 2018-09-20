@@ -33,13 +33,13 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
         const props = this.props,
             { isOpen } = props;
+        this.node = document.createElement("div");
 
-        console.log(isOpen);
         if(!isOpen)
             return null;
         else
             return createPortal(
-                <Portal >
+                <Portal isOpen={isOpen}>
                     {this.props.children}
                 </Portal>,
                 this.node

@@ -19,7 +19,8 @@ class Portal extends Component {
         return !isOpen === true ? null
             : <div className={"overlay"}>
                 <div className="content">
-                    {this.props.children}
+                    text
+                    {/*{this.props.children}*/}
                 </div>
             </div>
     }
