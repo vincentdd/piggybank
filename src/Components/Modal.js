@@ -23,7 +23,9 @@ class Modal extends Component {
         const parent = getParentElement(this.props.parentSelector);
         parent.appendChild(this.node);
     };
-
+    // componentWillUnmount() {
+    //     window.document.body.removeChild(this.node);
+    // }
     render(){
         // const props = {
         //     ...this.props,
@@ -33,8 +35,8 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
         const props = this.props,
             { isOpen } = props;
-        this.node = document.createElement("div");
-
+        if(!this.node)
+            this.node = document.createElement("div");
         if(!isOpen)
             return null;
         else
@@ -45,11 +47,6 @@ class Modal extends Component {
                 this.node
             );
     }
-
-    componentWillUnmount() {
-        window.document.body.removeChild(this.node);
-    }
-
 }
 
 Modal.propTypes = {

@@ -34,7 +34,7 @@ class List extends Component {
                     marginRight           : '-50%',
                     transform             : 'translate(-50%, -50%)'
                 }}>
-                    <ItemForm />
+                    {/*<ItemForm />*/}
                 </Modal>
             </ul>
         )
