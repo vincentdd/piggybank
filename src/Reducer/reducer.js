@@ -73,28 +73,28 @@ function deepFreeze (o) {
     return o;
 }
 
-const bill = (state, action) => {
-    switch (action.type){
-        case 'ADD_ITEM':
-            return {
-                id: action.id,
-                text: action.text,
-                date: action.date,
-                price: action.price,
-                tagId: action.tagId
-            };
-        case 'SET_TAG':
-            if(state.id !== action.id){
-                return state;
-            }
-            return {
-                ...state,
-                tagId: action.tagId
-            };
-        default:
-            return state;
-    }
-}
+// const bill = (state, action) => {
+//     switch (action.type){
+//         case 'ADD_ITEM':
+//             return {
+//                 id: action.id,
+//                 text: action.text,
+//                 date: action.date,
+//                 price: action.price,
+//                 tagId: action.tagId
+//             };
+//         case 'EDIT_ITEM':
+//             if(state.id !== action.id){
+//                 return state;
+//             }
+//             return {
+//                 ...state,
+//                 tagId: action.tagId
+//             };
+//         default:
+//             return state;
+//     }
+// }
 
 const tag = (state, action) => {
     switch (action.type){
@@ -122,10 +122,13 @@ const bills = (state = initial.bills || [], action) => {
         case 'ADD_ITEM':
             return [
                 ...state,
-                bill(undefined, { ...action, id: ++ITEM_ID })
+                {...action.payload}
             ];
-        case 'SET_TAG':
-            return state.map(current => bill(current, action));
+        case 'EDIT_ITEM':
+            return state.map(current =>
+                (current.id === action.payload.id)
+                    ? {...action.payload}
+                    : current);
         default:
             return state;
     }

@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => ({
         console.log('submit text')
         dispatch({
             type: 'ADD_ITEM',
-            ...payload
+            payload: {...payload}
         })
     }
 });

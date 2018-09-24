@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import {connect} from "react-redux";
+import {connect} from "react-redux";
 import Modal from './Modal';
 const { Component } = React;
 
 class ItemForm extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props);
+        this.state = {fields: {...this.props.item}};
         this.onChange = this.onChange.bind(this);
         this.getField = this.getField.bind(this);
     }
@@ -25,9 +26,20 @@ class ItemForm extends Component{
         }
     };
     render() {
+        const item = this.state.fields,
+            tags = this.props.tags;
+
+        console.log(this.state.fields)
         return (
             <form>
-                <label id="tagName">标签名：<input name="tagName" {...this.getField('tagName')}/></label>
+                <label id="name">名称: <input name="name" value={item.text} {...this.getField('name')}/></label>
+                <label id="price">金额: <input name="price" value={item.price} {...this.getField('price')}/></label>
+                <label id="tagId">标签名:
+                    <select  name="tagId" {...this.getField('tagId')} >
+                        {tags.map(current => <option value={current.id} key={current.id}>{current.text}</option>)}
+                    </select>
+                </label>
+                <label htmlFor="date">时间: <input onChange={this.handleChange} name="date" type="date"/></label>
                 <input type="submit" onSubmit={this.handleSubmit} value="提交" />
             </form>
         )
@@ -52,14 +64,17 @@ ItemForm.propTypes = {
 //         )
 //     }
 // }
-// const mapDispatchToProps = (dispatch) => ({
-//     handleSubmit: (payload) => {
-//         console.log('submit text')
-//         dispatch({
-//             type: 'ADD_ITEM',
-//             ...payload
-//         })
-//     }
-// });
+const mapStateToProps = (state) => ({
+    tags: state.tags
+});
+const mapDispatchToProps = (dispatch) => ({
+    handleSubmit: (payload) => {
+        console.log('update')
+        dispatch({
+            type: 'ADD_ITEM',
+            payload: {...payload}
+        })
+    }
+});
 
-export default ItemForm;
+export default connect(mapStateToProps, mapDispatchToProps)(ItemForm);

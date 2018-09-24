@@ -8,12 +8,19 @@ const { Component } = React;
 class List extends Component {
     constructor() {
         super();
-        this.state = {modalIsOpen: false};
+        this.state = {
+            modalIsOpen: false,
+            selected: null
+        };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
-    openModal() {
-        this.setState({modalIsOpen: true});
+    openModal(obj) {
+        console.log(obj);
+        this.setState({
+            modalIsOpen: true,
+            selected: obj
+        });
     }
     closeModal() {
         this.setState({modalIsOpen: false});
@@ -21,20 +28,15 @@ class List extends Component {
     render(){
         const state = this.state,
             dom = this.props.bills.map(
-            current => <BillItem bill = {current} key = {current.id} handleOpenModal={this.openModal} closeModal={this.closeModal} />
+            current => {
+                return <BillItem bill = {current} key = {current.id} handleOpenModal={() => (this.openModal(current))} closeModal={this.closeModal} />
+            }
         );
         return (
             <ul>
                 {dom}
-                <Modal isOpen={state.modalIsOpen} style={{
-                    top                   : '50%',
-                    left                  : '50%',
-                    right                 : 'auto',
-                    bottom                : 'auto',
-                    marginRight           : '-50%',
-                    transform             : 'translate(-50%, -50%)'
-                }}>
-                    {/*<ItemForm />*/}
+                <Modal isOpen={state.modalIsOpen} >
+                    <ItemForm item={state.selected} />
                 </Modal>
             </ul>
         )
@@ -88,7 +90,7 @@ function filterSelect(bills, filter){
 }
 
 const mapStateToProps = (state) => ({
-    bills:filterSelect(state.bills, state.filter)
+    bills: filterSelect(state.bills, state.filter)
 });
 
 const mapDispatchToProps = (dispatch) => ({

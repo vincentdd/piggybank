@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
             billsArr.inputStr.map((cunrrent) => {
                 dispatch({
                     type: 'ADD_ITEM',
-                    ...cunrrent
+                    payload: {...cunrrent}
                 });
             });
         }
