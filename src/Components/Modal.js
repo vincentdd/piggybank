@@ -13,7 +13,6 @@ function getParentElement(parentSelector) {
 class Modal extends Component {
         constructor(props) {
         super(props);
-        // this.toggleVisible = this.toggleVisible.bind(this);
     }
     static defaultProps = {
         isOpen: false,
@@ -40,20 +39,38 @@ class Modal extends Component {
         else
             return createPortal(
                 <Portal isOpen={isOpen}>
-                    {this.props.children}
+                    {this.props.ch}
                 </Portal>,
                 this.node
             );
     }
+//{this.props.children}
+//    componentWillUnmount() {
+//        window.document.body.removeChild(this.node);
+//    }
+}
 
-    componentWillUnmount() {
-        window.document.body.removeChild(this.node);
+class Test extends Component {
+    constructor(props) {
+        super(props);
     }
-
+    static defaultProps = {
+        isOpen: false,
+        parentSelector: () => document.body
+    };
+    render(){
+        this.node = document.createElement("div");
+        const parent = document.body;
+        parent.appendChild(this.node);
+        return createPortal(
+            <p>test</p>,
+            this.node
+        );
+    }
 }
 
 Modal.propTypes = {
     //toggleVisible: PropTypes.func
 };
 
-export default Modal;
+export {Modal,Test};

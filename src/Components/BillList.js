@@ -1,7 +1,7 @@
 import React from 'react';
 import BillItem from "./BillItem";
 import {connect} from 'react-redux';
-import Modal from "./Modal";
+import {Modal,Test} from "./Modal";
 import ItemForm from './ItemForm';
 
 const { Component } = React;
@@ -26,21 +26,14 @@ class List extends Component {
         return (
             <ul>
                 {dom}
-                <Modal isOpen={state.modalIsOpen} style={{
-                    top                   : '50%',
-                    left                  : '50%',
-                    right                 : 'auto',
-                    bottom                : 'auto',
-                    marginRight           : '-50%',
-                    transform             : 'translate(-50%, -50%)'
-                }}>
-                    <ItemForm />
-                </Modal>
+                <Test isOpen={state.modalIsOpen}/>
             </ul>
         )
     }
 }
-
+//<Modal isOpen={state.modalIsOpen}>
+//</Modal>
+//<ItemForm />
 function showDay(bills) {
     let result = [],
         ITEM_ID = 0,
