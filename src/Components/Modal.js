@@ -13,16 +13,21 @@ function getParentElement(parentSelector) {
 class Modal extends Component {
         constructor(props) {
         super(props);
+        // this.toggleVisible = this.toggleVisible.bind(this);
     }
     static defaultProps = {
         isOpen: false,
         parentSelector: () => document.body
     };
     componentDidMount(){
+        // debugger;
+        // console.log(this.props.parentSelector());
         const parent = getParentElement(this.props.parentSelector);
         parent.appendChild(this.node);
     };
-
+    // componentWillUnmount() {
+    //     window.document.body.removeChild(this.node);
+    // }
     render(){
         // const props = {
         //     ...this.props,
@@ -32,40 +37,18 @@ class Modal extends Component {
         // this.setState({visiable: false, fields: {}});
         const props = this.props,
             { isOpen } = props;
-        this.node = document.createElement("div");
-
+        // debugger;
+        if(!this.node)
+            this.node = document.createElement("div");
         if(!isOpen)
             return null;
         else
             return createPortal(
                 <Portal isOpen={isOpen}>
-                    {this.props.ch}
+                    {this.props.children}
                 </Portal>,
                 this.node
             );
-    }
-//{this.props.children}
-//    componentWillUnmount() {
-//        window.document.body.removeChild(this.node);
-//    }
-}
-
-class Test extends Component {
-    constructor(props) {
-        super(props);
-    }
-    static defaultProps = {
-        isOpen: false,
-        parentSelector: () => document.body
-    };
-    render(){
-        this.node = document.createElement("div");
-        const parent = document.body;
-        parent.appendChild(this.node);
-        return createPortal(
-            <p>test</p>,
-            this.node
-        );
     }
 }
 
@@ -73,4 +56,4 @@ Modal.propTypes = {
     //toggleVisible: PropTypes.func
 };
 
-export {Modal,Test};
+export default Modal;

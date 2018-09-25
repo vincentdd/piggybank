@@ -12,7 +12,7 @@ export default class BillItem extends Component {
             <li>
                 {props.bill.text}
                 {props.bill.price}
-                <a href="javascript:void(0)" onClick={props.handleOpenModal}>edit</a>
+                <a href="javascript:void(0)" bill={props.bill} onClick={props.handleOpenModal}>edit</a>
             </li>
         )
     }
