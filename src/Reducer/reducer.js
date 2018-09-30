@@ -122,7 +122,7 @@ const bills = (state = initial.bills || [], action) => {
         case 'ADD_ITEM':
             return [
                 ...state,
-                {...action.payload}
+                {...action.payload,id: ITEM_ID}
             ];
         case 'EDIT_ITEM':
             return state.map(current =>
