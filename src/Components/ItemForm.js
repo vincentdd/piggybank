@@ -10,6 +10,7 @@ class ItemForm extends Component{
         this.state = {fields: {...this.props.item}};
         this.onChange = this.onChange.bind(this);
         this.getField = this.getField.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
     onChange = key => e => {
         this.setState({
@@ -19,7 +20,12 @@ class ItemForm extends Component{
             }
         })
     };
-
+    handleEdit(e){
+        const payload = this.state.fields,
+            props = this.props;
+        props.handleSubmit(payload);
+        e.preventDefault();
+    }
     getField = fieldName => {
         return {
             onChange: this.onChange(fieldName),
@@ -31,7 +37,7 @@ class ItemForm extends Component{
 
         console.log(this.state.fields)
         return (
-            <form>
+            <form onSubmit={e => this.handleEdit(e)}>
                 <label id="name">名称: <input name="name" value={item.text} {...this.getField('name')}/></label>
                 <label id="price">金额: <input name="price" value={item.price} {...this.getField('price')}/></label>
                 <label id="tagId">标签名:
@@ -40,7 +46,7 @@ class ItemForm extends Component{
                     </select>
                 </label>
                 <label htmlFor="date">时间: <input onChange={this.handleChange} name="date" type="date"/></label>
-                <input type="submit" onSubmit={this.handleSubmit} value="提交" />
+                <input type="submit" value="提交" />
             </form>
         )
     }
@@ -71,7 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
     handleSubmit: (payload) => {
         console.log('update')
         dispatch({
-            type: 'ADD_ITEM',
+            type: 'EDIT_ITEM',
             payload: {...payload}
         })
     }
