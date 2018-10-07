@@ -27,18 +27,18 @@ class List extends Component {
     }
     render(){
         const state = this.state,
-            dom = this.props.bills.map(
-            current => {
-                return <BillItem bill = {current} key = {current.id} handleOpenModal={() => (this.openModal(current))} closeModal={this.closeModal} />
-            }
+            dom = this.props.bills.map((current) =>
+                <BillItem key={current.id} bill={current} handleOpenModal={() => (this.openModal(current))} closeModal={this.closeModal} />
         );
         return (
-            <ul>
-                {dom}
+            <React.Fragment>
+                <ul>
+                    {dom}
+                </ul>
                 <Modal isOpen={state.modalIsOpen} >
                     <ItemForm item={state.selected} />
                 </Modal>
-            </ul>
+            </React.Fragment>
         )
     }
 }

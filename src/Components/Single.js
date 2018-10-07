@@ -37,7 +37,7 @@ class Single extends Component{
                 <label htmlFor="tagId">时间:
                     <select onChange={this.handleChange} name="tagId">
                         <option value="value1">Value 1</option>
-                        <option value="value2" selected>Value 2</option>
+                        <option value="value2" defaultValue>Value 2</option>
                         <option value="value3">Value 3</option>
                     </select>
                 </label>
