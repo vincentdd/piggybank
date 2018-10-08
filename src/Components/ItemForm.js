@@ -21,8 +21,11 @@ class ItemForm extends Component{
         })
     };
     handleEdit(e){
+        const props = this.props,
+            payload = this.state.fields;
         e.preventDefault();
-        console.log("submit success");
+        console.log(this.state.fields);
+        props.addItem(payload);
         debugger;
     }
     getField = fieldName => {
@@ -36,7 +39,7 @@ class ItemForm extends Component{
 
         console.log(this.state.fields)
         return (
-            <form>
+            <form onSubmit={e => this.handleEdit(e)}>
                 <label id="name">名称: <input name="name" value={item.text} {...this.getField('name')}/></label>
                 <label id="price">金额: <input name="price" value={item.price} {...this.getField('price')}/></label>
                 <label id="tagId">标签名:
@@ -53,7 +56,7 @@ class ItemForm extends Component{
 
 ItemForm.propTypes = {
     getField: PropTypes.func,
-    handleSubmit: PropTypes.func
+    addItem: PropTypes.func
 };
 //
 // class BillEdit extends Component {
@@ -73,10 +76,10 @@ const mapStateToProps = (state) => ({
     tags: state.tags
 });
 const mapDispatchToProps = (dispatch) => ({
-    handleSubmit: (payload) => {
+    addItem: (payload) => {
         console.log('update')
         dispatch({
-            type: 'ADD_ITEM',
+            type: 'EDIT_ITEM',
             payload: {...payload}
         })
     }
