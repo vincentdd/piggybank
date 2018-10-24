@@ -12,11 +12,11 @@ class Tags extends Component {
         this.handleShowInput = this.handleShowInput.bind(this);
         this.toggleVisiable = this.toggleVisiable.bind(this);
     }
-    toggleVisiable(index){
+    toggleVisiable(index){  //在编辑队列中保存当前编辑的tagid
         let temp = this.state.editArr,
             editArr;
         editArr = temp.map((current, key) => {
-            return (key === index) //当key不等于选中的元素或为空时，将数组内的标记置为false，否则置为true
+            return (key === index)
         });
         this.setState({editArr: [...editArr]});
     }
@@ -32,7 +32,7 @@ class Tags extends Component {
             editArr = this.state.editArr;
 
         childNode = tags.map((current) => {
-            return <Tag key={current.id} {...current} toggleVisiable={this.toggleVisiable} handleEdit={props.handleEdit} handleShowInput={this.handleShowInput} editFlag={editArr[current.id]} />
+            return <Tag key={current.id} id={current.id} {...current} toggleVisiable={this.toggleVisiable} handleEdit={props.handleEdit} handleShowInput={this.handleShowInput} editFlag={editArr[current.id]} />
         });
         return (
             <ul>

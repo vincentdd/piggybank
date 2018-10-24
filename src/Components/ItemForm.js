@@ -12,6 +12,13 @@ class ItemForm extends Component{
         this.getField = this.getField.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.item !== undefined){
+            this.setState({
+                fields: {...nextProps.item}
+            })
+        }
+    }
     onChange = key => e => {
         this.setState({
             fields: {
@@ -38,14 +45,14 @@ class ItemForm extends Component{
         console.log(this.state.fields)
         return (
             <form onSubmit={e => this.handleEdit(e)}>
-                <label id="name">名称: <input name="name" value={item.text} {...this.getField('name')}/></label>
+                <label id="name">名称: <input name="name" value={item.text} {...this.getField('text')}/></label>
                 <label id="price">金额: <input name="price" value={item.price} {...this.getField('price')}/></label>
                 <label id="tagId">标签名:
                     <select  name="tagId" {...this.getField('tagId')} >
                         {tags.map(current => <option value={current.id} key={current.id}>{current.text}</option>)}
                     </select>
                 </label>
-                <label htmlFor="date">时间: <input onChange={this.handleChange} name="date" type="date"/></label>
+                <label htmlFor="date">时间: <input {...this.getField('date')} name="date" type="date"/></label>
                 <input type="submit" value="提交" />
             </form>
         )
