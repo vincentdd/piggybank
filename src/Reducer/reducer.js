@@ -55,8 +55,6 @@ const initial = {
     visiableFlag: false
 };
 
-let ITEM_ID = initial.bills.length,
-    TAG_ID = initial.tags.length;
 ///////////////////////////////////////////////////////////////////////////////////////
 function deepFreeze (o) {
     Object.freeze(o);
@@ -122,7 +120,7 @@ const bills = (state = initial.bills || [], action) => {
         case 'ADD_ITEM':
             return [
                 ...state,
-                {...action.payload,id: ITEM_ID}
+                {...action.payload, id: ITEM_ID}
             ];
         case 'EDIT_ITEM':
             return state.map(current =>
@@ -135,11 +133,12 @@ const bills = (state = initial.bills || [], action) => {
 };
 
 const tags = (state = initial.tags || [], action) => {
+    let TAG_ID = state.length;
     switch (action.type){
         case 'ADD_TAG':
             return [
                 ...state,
-                tag(undefined, { ...action, id: ++TAG_ID })
+                tag(undefined, { ...action, id: TAG_ID })
             ];
         case 'EDIT_TAG':
             return state.map(current => tag(current, action));

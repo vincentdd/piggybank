@@ -21,12 +21,10 @@ class ItemForm extends Component{
         })
     };
     handleEdit(e){
-        const props = this.props,
-            payload = this.state.fields;
+        const payload = this.state.fields,
+            props = this.props;
+        props.handleSubmit(payload);
         e.preventDefault();
-        console.log(this.state.fields);
-        props.addItem(payload);
-        debugger;
     }
     getField = fieldName => {
         return {
@@ -48,7 +46,7 @@ class ItemForm extends Component{
                     </select>
                 </label>
                 <label htmlFor="date">时间: <input onChange={this.handleChange} name="date" type="date"/></label>
-                <input type="submit" onSubmit={e => this.handleEdit(e)} value="提交" />
+                <input type="submit" value="提交" />
             </form>
         )
     }
@@ -56,7 +54,7 @@ class ItemForm extends Component{
 
 ItemForm.propTypes = {
     getField: PropTypes.func,
-    addItem: PropTypes.func
+    handleSubmit: PropTypes.func
 };
 //
 // class BillEdit extends Component {
@@ -76,7 +74,7 @@ const mapStateToProps = (state) => ({
     tags: state.tags
 });
 const mapDispatchToProps = (dispatch) => ({
-    addItem: (payload) => {
+    handleSubmit: (payload) => {
         console.log('update')
         dispatch({
             type: 'EDIT_ITEM',

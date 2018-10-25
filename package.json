@@ -19,5 +19,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.7",
+    "cssnano-preset-advanced": "^4.0.5",
+    "postcss-aspect-ratio-mini": "^0.0.2",
+    "postcss-px-to-viewport": "^0.0.3",
+    "postcss-viewport-units": "^0.1.6",
+    "postcss-write-svg": "^3.0.1",
+    "react-app-rewire-postcss": "^3.0.2"
   }
 }
