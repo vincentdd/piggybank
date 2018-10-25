@@ -2,12 +2,12 @@ header{
     background-color: #1b1b1b;
     width: 750px;
     height: 50px;
+    text-align: center;
 }
 .title{
     color: white;
     line-height: 50px;
     display: inline-block;
-    margin: auto;
 }
 .orange-bgc{
     color: black;
