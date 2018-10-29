@@ -23,6 +23,7 @@
   "devDependencies": {
     "cssnano": "^4.1.7",
     "cssnano-preset-advanced": "^4.0.5",
+    "echarts": "^4.2.0-rc.2",
     "postcss-aspect-ratio-mini": "^0.0.2",
     "postcss-preset-env": "^6.2.0",
     "postcss-px-to-viewport": "^0.0.3",
