@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div>
             <header><div className={"title"}>Piggy<span className={"orange-bgc"}>bank</span></div></header>
-            {/*<Chart />*/}
+            <Chart />
             <NavLink to="/add/one">Add</NavLink>
             <NavLink to="/tags">View Tags</NavLink>
             <BillList />

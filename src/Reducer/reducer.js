@@ -112,7 +112,7 @@ const tag = (state, action) => {
         default:
             return state;
     }
-}
+};
 
 const bills = (state = initial.bills || [], action) => {
     let ITEM_ID = state.length;
