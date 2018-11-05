@@ -6,16 +6,21 @@ import 'echarts/lib/component/title';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+Number.isNaN = Number.isNaN || function(value) {
+    return typeof value === "number" && isNaN(value);
+}
+
 class Chart extends Component {
     constructor(props) {
         super(props);
         this.node = React.createRef();
         this.init = this.init.bind(this);
-        this.mapBillsToClass = this.mapBillsToClass.bind(this);
+        this.mapBillsToObj = this.mapBillsToObj.bind(this);
         this.add = this.add.bind(this);
         this.isNumber = this.isNumber.bind(this);
+        this.mapObjToChart = this.mapObjToChart.bind(this);
     }
-    mapBillsToClass(){
+    mapBillsToObj(){
         let reducer;
 
         reducer = this.props.bills.reduce((accumulator,currentValue) => {
@@ -24,11 +29,20 @@ class Chart extends Component {
             return accumulator;
         }, {});
 
-        return reducer;
+        return this.mapObjToChart(reducer);
+    }
+    mapObjToChart(obj){
+        Object.keys(obj).reduce((accumulator,currentValue) => {
+            accumulator.name = currentValue;
+            accumulator.value = obj[currentValue];
+            return accumulator;
+        },{})
     }
     add(arg1, arg2){
-        const num1Digits = (this.isNumber(arg1).toString().split('.')[1] || '').length;
-        const num2Digits = (this.isNumber(arg2).toString().split('.')[1] || '').length;
+        arg1 = this.isNumber(arg1);
+        arg2 = this.isNumber(arg2);
+        const num1Digits = (arg1.toString().split('.')[1] || '').length;
+        const num2Digits = (arg2.toString().split('.')[1] || '').length;
         const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
 
         return (arg1 * baseNum + arg2 * baseNum) / baseNum;
@@ -36,7 +50,7 @@ class Chart extends Component {
     isNumber(num){
         let temp = parseInt(num, 10),
             result;
-        result = !Number.isNaN(temp) === true
+        result = Number.isNaN(temp)
             ? 0
             : temp;
 
@@ -46,7 +60,7 @@ class Chart extends Component {
         let doughuntChart = echarts.init(this.node.current),
             classes;
 
-        classes = this.mapBillsToClass();
+        classes = this.mapBillsToObj();
         doughuntChart.setOption({
             title: {
                 text: 'test'
