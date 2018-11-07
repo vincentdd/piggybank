@@ -13,8 +13,8 @@ const Home = () => {
         <div>
             <header><div className={"title"}>Piggy<span className={"orange-bgc"}>bank</span></div></header>
             <Chart />
-            <NavLink to="/add/one">Add</NavLink>
-            <NavLink to="/tags">View Tags</NavLink>
+            <NavLink to="/add/one" className="btn-add">Add</NavLink>
+            <NavLink to="/tags" className="btn-tags">View Tags</NavLink>
             <BillList />
         </div>
     )

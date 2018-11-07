@@ -10,6 +10,36 @@ Number.isNaN = Number.isNaN || function(value) {
     return typeof value === "number" && isNaN(value);
 }
 
+// if (typeof Object.assign != 'function') {
+//     // Must be writable: true, enumerable: false, configurable: true
+//     Object.defineProperty(Object, "assign", {
+//         value: function assign(target, varArgs) { // .length of function is 2
+//             'use strict';
+//             if (target == null) { // TypeError if undefined or null
+//                 throw new TypeError('Cannot convert undefined or null to object');
+//             }
+//
+//             var to = Object(target);
+//
+//             for (var index = 1; index < arguments.length; index++) {
+//                 var nextSource = arguments[index];
+//
+//                 if (nextSource != null) { // Skip over if undefined or null
+//                     for (var nextKey in nextSource) {
+//                         // Avoid bugs when hasOwnProperty is shadowed
+//                         if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+//                             to[nextKey] = nextSource[nextKey];
+//                         }
+//                     }
+//                 }
+//             }
+//             return to;
+//         },
+//         writable: true,
+//         configurable: true
+//     });
+// }
+
 class Chart extends Component {
     constructor(props) {
         super(props);
@@ -32,11 +62,11 @@ class Chart extends Component {
         return this.mapObjToChart(reducer);
     }
     mapObjToChart(obj){
-        Object.keys(obj).reduce((accumulator,currentValue) => {
-            accumulator.name = currentValue;
-            accumulator.value = obj[currentValue];
+        const result = Object.keys(obj).reduce((accumulator,currentValue) => {
+            accumulator.push({name: currentValue, value: obj[currentValue]});
             return accumulator;
-        },{})
+        },[]);
+        return result;
     }
     add(arg1, arg2){
         arg1 = this.isNumber(arg1);
@@ -63,7 +93,7 @@ class Chart extends Component {
         classes = this.mapBillsToObj();
         doughuntChart.setOption({
             title: {
-                text: 'test'
+                text: '分类'
             },
             tooltip: {},
             series: [{
@@ -79,7 +109,7 @@ class Chart extends Component {
                     emphasis: {
                         show: true,
                         textStyle: {
-                            fontSize: '15',
+                            fontSize: '20',
                             fontWeight: 'bold'
                         }
                     }
@@ -93,7 +123,7 @@ class Chart extends Component {
     }
     render() {
         return(
-            <div ref={this.node} style={{width: "100%", height: "200px"}} />
+            <div ref={this.node} style={{width: "100%", height: "300px"}} />
         )
     }
 }
@@ -104,7 +134,8 @@ function filterBills(bills, tags) {
     result = bills.map( current => {
         const index = current.tagId;
         const temp = filterTags(tags, index);
-        return Object.assign({},{name: current.text, value: current.price, tagName: temp.text})
+        if(temp !== undefined )
+            return Object.assign({},{name: current.text, value: current.price, tagName: temp.text});
     });
 
     return result;
