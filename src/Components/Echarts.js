@@ -32,11 +32,12 @@ class Chart extends Component {
         return this.mapObjToChart(reducer);
     }
     mapObjToChart(obj){
-        Object.keys(obj).reduce((accumulator,currentValue) => {
-            accumulator.name = currentValue;
-            accumulator.value = obj[currentValue];
+        const result = Object.keys(obj).reduce((accumulator,currentValue) => {
+            accumulator.push({name: currentValue, value: obj[currentValue]});
             return accumulator;
-        },{})
+        },[]);
+
+        return result;
     }
     add(arg1, arg2){
         arg1 = this.isNumber(arg1);
