@@ -1,11 +1,10 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import BillItem from "./BillItem";
 import {connect} from 'react-redux';
 import Modal from "./Modal";
 import ItemForm from './ItemForm';
 import "./billList.css"
 
-const { Component } = React;
 class List extends Component {
     constructor() {
         super();
