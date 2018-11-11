@@ -14,3 +14,18 @@ header{
     background-color: rgb(255, 155, 0);
     border-radius: 5px;
 }
+.footer{
+    background-color: #1b1b1b;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 750px;
+}
+.btn-add,
+.btn-tags{
+    color: white;
+    display: inline-block;
+    width: 375px;
+    text-align: center;
+    line-height: 50px;
+}

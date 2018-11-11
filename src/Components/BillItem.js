@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
-const { Component } = React;
+import './billItem.css'
 
 export default class BillItem extends Component {
     constructor() {

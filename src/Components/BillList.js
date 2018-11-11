@@ -3,6 +3,7 @@ import BillItem from "./BillItem";
 import {connect} from 'react-redux';
 import Modal from "./Modal";
 import ItemForm from './ItemForm';
+import "./billList.css"
 
 const { Component } = React;
 class List extends Component {
@@ -32,7 +33,7 @@ class List extends Component {
         );
         return (
             <React.Fragment>
-                <ul>
+                <ul className="bill-list">
                     {dom}
                 </ul>
                 <Modal isOpen={state.modalIsOpen} >
