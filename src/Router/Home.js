@@ -3,6 +3,7 @@ import { Route, NavLink } from 'react-router-dom';
 import BillList from '../Components/BillList';
 import Chart from '../Components/Echarts';
 import './Home.css';
+import '../styles/common.css'
 
 const data = [
     {value: 1, name: "是"},
@@ -11,11 +12,13 @@ const data = [
 const Home = () => {
     return (
         <div>
-            <header><div className={"title"}>Piggy<span className={"orange-bgc"}>bank</span></div></header>
+            <header><div className="title">Piggy<span className="orange-bgc">bank</span></div></header>
             <Chart />
-            <NavLink to="/add/one" className="btn-add">Add</NavLink>
-            <NavLink to="/tags" className="btn-tags">View Tags</NavLink>
             <BillList />
+            <footer className="footer">
+                <NavLink to="/add/one" className="btn-add">Add</NavLink>
+                <NavLink to="/tags" className="btn-tags">View Tags</NavLink>
+            </footer>
         </div>
     )
 }
