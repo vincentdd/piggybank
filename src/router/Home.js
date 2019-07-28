@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom';
-import BillList from '../Components/BillList';
-import Chart from '../Components/Echarts';
+import BillList from '../components/List';
+import Chart from '../components/echarts';
 import './Home.css';
+import '../styles/common.css'
 
 const data = [
     {value: 1, name: "是"},

@@ -1,6 +1,6 @@
 import React from 'react';
 import {createPortal} from 'react-dom';
-import Portal from './Portal';
+import Portal from './portal';
 import PropTypes from 'prop-types';
 //import ItemForm from 'ItemForm';
 const { Component } = React;
