@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tag from './Tag';
+import Tag from './tag';
 import {connect} from "react-redux";
 const { Component } = React;
 
