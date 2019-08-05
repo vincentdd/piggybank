@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import Modal from "./modal";
 import ItemForm from './item_form';
 import "./List.css";
-import List from 'antd';
+import {query} from "../services/bills"
+import {List, Avatar, Button, Skeleton} from 'antd';
 
 class LoadMoreList extends Component {
     state = {
@@ -25,21 +26,13 @@ class LoadMoreList extends Component {
     }
 
     getData = callback => {
-        reqwest({
-            url: fakeDataUrl,
-            type: 'json',
-            method: 'get',
-            contentType: 'application/json',
-            success: res => {
-                callback(res);
-            },
-        });
+        query().then(callback);
     };
 
     onLoadMore = () => {
         this.setState({
             loading: true,
-            list: this.state.data.concat([...new Array(count)].map(() => ({ loading: true, name: {} }))),
+            list: this.state.data.concat([...new Array( )].map(() => ({ loading: true, name: {} }))),
         });
         this.getData(res => {
             const data = this.state.data.concat(res.results);

@@ -1,4 +1,4 @@
-import { request, config } from '../utils'
+import { request, config } from '../utils/index'
 
 const { api } = config;
 const { GET_ALL_BILLS } = api;

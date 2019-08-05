@@ -15,9 +15,7 @@ module.exports = {
     APIV1,
     APIV2,
     APIV3,
-    APIV4,
-    CRMAPI,
     api: {
-        GET_ALL_BILLS: `${APIV3}/bills`
+        GET_ALL_BILLS: `/bills`
     },
 };
