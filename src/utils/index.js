@@ -1,6 +1,6 @@
 /* global window */
 import classnames from 'classnames'
-// import lodash from 'lodash'
+import lodash from 'lodash'
 import config from './config'
 import request from './request'
 // import { color } from './theme'
@@ -99,12 +99,12 @@ const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
     return result
 }
 
-module.exports = {
+export {
     config,
     request,
     // color,
     classnames,
     queryURL,
     queryArray,
-    arrayToTree,
-};
+    arrayToTree
+}
