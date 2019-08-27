@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom';
-import BillList from '../components/List';
+import BillList from '../components/List/List';
 import Chart from '../components/echarts';
 import './Home.css';
 import '../styles/common.css'
+import { PageHeader } from 'antd';
+
 
 const data = [
     {value: 1, name: "是"},
@@ -12,7 +14,8 @@ const data = [
 const Home = () => {
     return (
         <div>
-            <header><div className="title">Piggy<span className="orange-bgc">bank</span></div></header>
+            {/*<header><div className="title">Piggy<span className="orange-bgc">bank</span></div></header>*/}
+            <PageHeader title="PiggyBank" />
             <Chart />
             <BillList />
             <footer className="footer">
