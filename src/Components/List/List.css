@@ -1,0 +1,5 @@
+.ant-list-item-action{
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import BillItem from "./bill_item";
+import BillItem from "../bill_item";
 import {connect} from 'react-redux';
-import Modal from "./modal";
-import ItemForm from './item_form';
+// import Modal from "../Modal/Modal";
+import ItemForm from '../item_form';
 import "./List.css";
-import {query} from "../services/bills"
-import {List, Avatar, Button, Skeleton} from 'antd';
+import {query} from "../../services/bills"
+import {List, Modal, Button, Skeleton} from 'antd';
+// import BillForm from '../ModalForm/BillForm'
+import CollectionsPage from '../Modal/Modal';
 
 class LoadMoreList extends Component {
     state = {
@@ -19,8 +21,8 @@ class LoadMoreList extends Component {
         this.getData(res => {
             this.setState({
                 initLoading: false,
-                data: res.results,
-                list: res.results,
+                data: [...res.payload],
+                list: res.payload,
             });
         });
     }
@@ -35,7 +37,7 @@ class LoadMoreList extends Component {
             list: this.state.data.concat([...new Array( )].map(() => ({ loading: true, name: {} }))),
         });
         this.getData(res => {
-            const data = this.state.data.concat(res.results);
+            const data = this.state.data.concat(res.payload);
             this.setState(
                 {
                     data,
@@ -76,16 +78,10 @@ class LoadMoreList extends Component {
                 loadMore={loadMore}
                 dataSource={list}
                 renderItem={item => (
-                    <List.Item actions={[<a>edit</a>, <a>more</a>]}>
+                    <List.Item actions={[<CollectionsPage name={'编辑'} />]}>
                         <Skeleton avatar title={false} loading={item.loading} active>
-                            <List.Item.Meta
-                                avatar={
-                                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                }
-                                title={<a href="https://ant.design">{item.name.last}</a>}
-                                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                            />
-                            <div>content</div>
+                            <span className={'bill-item-context'}>{item.context}</span>
+                            <span className={'bill-item-price'}>{item.price}</span>
                         </Skeleton>
                     </List.Item>
                 )}
@@ -93,7 +89,6 @@ class LoadMoreList extends Component {
         );
     }
 }
-
 
 // class List extends Component {
 //     constructor() {

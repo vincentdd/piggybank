@@ -55,6 +55,7 @@ const fetch = (options) => {
         case 'get':
             return axios.get(url, {
                 params: cloneData,
+                responseType: "json"
             })
         case 'delete':
             return axios.delete(url, {

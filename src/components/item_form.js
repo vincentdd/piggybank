@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import Modal from './modal';
+import Modal from './Modal/Modal';
 const { Component } = React;
 
 class ItemForm extends Component{
