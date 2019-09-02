@@ -3,7 +3,7 @@ import BillItem from "../bill_item";
 import {connect} from 'react-redux';
 // import Modal from "../Modal/Modal";
 import ItemForm from '../item_form';
-import "./List.css";
+// import "./List.css";
 import {query} from "../../services/bills"
 import {List, Modal, Button, Skeleton} from 'antd';
 // import BillForm from '../ModalForm/BillForm'

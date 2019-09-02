@@ -8,8 +8,6 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import {store, persiststore} from './store';
-import 'antd/dist/antd.css';
-
 
 class App extends Component {
     render() {
