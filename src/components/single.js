@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import '../styles/single.less';
 
 class Single extends Component{
     constructor(props){

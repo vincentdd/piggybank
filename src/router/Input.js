@@ -3,7 +3,6 @@ import Multiple from '../components/multiple';
 import Single from '../components/single';
 import { Route, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import '../styles/input.css';
 
 const Input = ({ history, match }) => {
     return (

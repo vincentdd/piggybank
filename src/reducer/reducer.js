@@ -181,6 +181,10 @@ const toggleVisiableFlag = (state = initial.visiableFlag ||  false, action) => {
         default:
             return state;
     }
+};
+
+export function getBills(state) {
+    return state.bills;
 }
 // const { combineReducers, cr eateStore } = Redux;
 const piggyBank = combineReducers({
