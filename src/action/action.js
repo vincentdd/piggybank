@@ -1,5 +1,6 @@
 export const ADD_ITEM = 'ADD_ITEM';
 export const GET_ALL_BILLS = 'GET_ALL_BILLS';
+export const RECEIVE_BILLS_LIST = 'RECEIVE_BILLS_LIST';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ADD_TAG = 'ADD_TAG';
@@ -13,6 +14,10 @@ export function addItem(item) {
 
 export function getAllBills() {
     return {type: GET_ALL_BILLS}
+}
+
+export function receiveBillList(arr) {
+    return {type: RECEIVE_BILLS_LIST, billsList: [...arr]}
 }
 
 export function editItem(item) {
