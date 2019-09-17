@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Multiple from '../components/multiple';
-import Single from '../components/single';
+import Multiple from '../Components/multiple';
+import Single from '../Components/single';
 import { Route, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import '../styles/input.css';

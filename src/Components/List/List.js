@@ -145,7 +145,7 @@ function showDay(bills) {
             temp.text = current.date;
             temp.date = current.date;
         } else {
-            [...result, temp];
+            result = [...result, temp];
             temp = {
                 id: ITEM_ID++,
                 price: 0,

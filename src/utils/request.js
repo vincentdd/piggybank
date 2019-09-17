@@ -133,9 +133,12 @@ export default function request(options) {
             const {
                 data,
                 statusText
-            } = response
-            statusCode = response.status
-            msg = data.message || statusText
+            } = response;
+            statusCode = response.status;
+            if(!data)
+                msg = statusText;
+            else
+                msg = data.message;
         } else {
             statusCode = 600
             msg = error.message || 'Network Error'
