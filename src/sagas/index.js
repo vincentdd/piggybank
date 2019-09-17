@@ -1,11 +1,12 @@
-import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'
+import {take, put, call, fork, select, takeEvery, all} from 'redux-saga/effects'
 import * as actions from '../action/action';
-import { getBills } from '../reducer/reducer'
-import  * as api from '../services/bills'
+import {getBills} from '../reducer/reducer'
+import * as api from '../services/bills'
 
 export function* getAllBills() {
     const list = yield call(api.getAllBills);
-    yield put(actions.receiveBillList(list))
+    if (list.code === 0)
+        yield put(actions.receiveBillList(list.payload));
 }
 
 export function* watchGetProducts() {
