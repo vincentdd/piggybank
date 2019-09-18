@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import BillItem from "../bill_item";
+// import BillItem from "../bill_item";
 import {connect} from 'react-redux';
+import * as actions from '../../action/action';
 // import Modal from "../Modal/Modal";
 import ItemForm from '../item_form';
-// import "./List.css";
-import {query} from "../../services/bills"
+import style from "./List.module.css";
+import {getAllBills} from "../../services/bills"
 import {List, Modal, Button, Skeleton} from 'antd';
 // import BillForm from '../ModalForm/BillForm'
 import CollectionsPage from '../Modal/Modal';
@@ -18,23 +19,25 @@ class LoadMoreList extends Component {
     };
 
     componentDidMount() {
-        this.getData(res => {
-            this.setState({
-                initLoading: false,
-                data: [...res.payload],
-                list: res.payload,
-            });
-        });
+        console.log(this.props.initBillList);
+        this.props.initBillList();
+        // this.getData(res => {
+        //     this.setState({
+        //         initLoading: false,
+        //         data: [...res.payload],
+        //         list: res.payload,
+        //     });
+        // });
     }
 
-    getData = callback => {
-        query().then(callback);
-    };
+    // getData = callback => {
+    //     getAllBills().then(callback);
+    // };
 
     onLoadMore = () => {
         this.setState({
             loading: true,
-            list: this.state.data.concat([...new Array( )].map(() => ({ loading: true, name: {} }))),
+            list: this.state.data.concat([].map(() => ({ loading: true, name: {} }))),
         });
         this.getData(res => {
             const data = this.state.data.concat(res.payload);
@@ -55,7 +58,8 @@ class LoadMoreList extends Component {
     };
 
     render() {
-        const { initLoading, loading, list } = this.state;
+        const { initLoading, loading } = this.state;
+        const { bills } = this.props;
         const loadMore =
             !initLoading && !loading ? (
                 <div
@@ -76,9 +80,9 @@ class LoadMoreList extends Component {
                 loading={initLoading}
                 itemLayout="horizontal"
                 loadMore={loadMore}
-                dataSource={list}
+                dataSource={bills}
                 renderItem={item => (
-                    <List.Item actions={[<CollectionsPage name={'编辑'} />]}>
+                    <List.Item actions={[<CollectionsPage name={'编辑'} {...item} />]} >
                         <Skeleton avatar title={false} loading={item.loading} active>
                             <span className={'bill-item-context'}>{item.context}</span>
                             <span className={'bill-item-price'}>{item.price}</span>
@@ -178,9 +182,12 @@ function filterSelect(bills, filter) {
 }
 
 const mapStateToProps = (state) => ({
-    bills: filterSelect(state.bills, state.filter)
+    bills: state.bills
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+    initBillList: () => dispatch(actions.getAllBills()),
+    receiveBillList: (payload) => dispatch(actions.receiveBillList(payload))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadMoreList);

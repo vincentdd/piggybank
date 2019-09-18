@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import * as actions from '../action/action';
 //import {createStore} from "redux/index";
 
 const initial = {
@@ -114,21 +115,23 @@ const tag = (state, action) => {
     }
 };
 
-const bills = (state = initial.bills || [], action) => {
-    let ITEM_ID = state.length;
+const bills = (bills = [], action) => {
+    let ITEM_ID = bills.length;
     switch (action.type){
         case 'ADD_ITEM':
             return [
-                ...state,
+                ...bills,
                 {...action.payload, id: ITEM_ID}
             ];
         case 'EDIT_ITEM':
-            return state.map(current =>
+            return bills.map(current =>
                 (current.id === action.payload.id)
                     ? {...action.payload}
                     : current);
+        case actions.RECEIVE_BILLS_LIST:
+            return [...action.billsList];
         default:
-            return state;
+            return bills;
     }
 };
 
@@ -181,7 +184,8 @@ const toggleVisiableFlag = (state = initial.visiableFlag ||  false, action) => {
         default:
             return state;
     }
-}
+};
+
 // const { combineReducers, cr eateStore } = Redux;
 const piggyBank = combineReducers({
     bills,
@@ -190,7 +194,7 @@ const piggyBank = combineReducers({
     model,
     toggleFlag,
     toggleVisiableFlag
-})
+});
 
 export default piggyBank;
 

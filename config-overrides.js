@@ -1,4 +1,4 @@
-const {override, fixBabelImports, addLessLoader} = require('customize-cra');
+const {override, fixBabelImports} = require('customize-cra');
 
 module.exports = override(
     fixBabelImports('import', {
@@ -6,11 +6,7 @@ module.exports = override(
         libraryDirectory: 'es',
         style: 'css',
     }),
-    addLessLoader({
-        javascriptEnabled: true,
-    }),
 );
-//react-scripts
 //     function override(config, env) {
 //     require('react-app-rewire-postcss')(config, {
 //         plugins: loader => [
