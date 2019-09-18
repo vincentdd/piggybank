@@ -24,8 +24,7 @@ class LoadMoreList extends Component {
         // this.getData(res => {
         //     this.setState({
         //         initLoading: false,
-        //         data: [...res.payload],
-        //         list: res.payload,
+        //         loading: false
         //     });
         // });
     }

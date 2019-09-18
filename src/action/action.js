@@ -1,6 +1,7 @@
 export const ADD_ITEM = 'ADD_ITEM';
 export const GET_ALL_BILLS = 'GET_ALL_BILLS';
 export const RECEIVE_BILLS_LIST = 'RECEIVE_BILLS_LIST';
+export const LOADING_FLAG = 'LOADING_FLAG';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ADD_TAG = 'ADD_TAG';
@@ -18,6 +19,10 @@ export function getAllBills() {
 
 export function receiveBillList(arr) {
     return {type: RECEIVE_BILLS_LIST, billsList: [...arr]}
+}
+
+export function loadingFlag(temp) {
+    return {type: LOADING_FLAG, loading: !temp }
 }
 
 export function editItem(item) {
