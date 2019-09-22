@@ -12,7 +12,6 @@ import CollectionsPage from '../Modal/Modal';
 
 class LoadMoreList extends Component {
     state = {
-        initLoading: true,
         loading: false,
         data: [],
         list: [],
@@ -57,10 +56,10 @@ class LoadMoreList extends Component {
     };
 
     render() {
-        const { initLoading, loading } = this.state;
-        const { bills } = this.props;
+        const { loading } = this.state;
+        const { isLoading, bills } = this.props;
         const loadMore =
-            !initLoading && !loading ? (
+            !isLoading && !loading ? (
                 <div
                     style={{
                         textAlign: 'center',
@@ -72,11 +71,12 @@ class LoadMoreList extends Component {
                     <Button onClick={this.onLoadMore}>loading more</Button>
                 </div>
             ) : null;
+        console.log(`begin to fetch, isLoading: ${isLoading}`);
 
         return (
             <List
                 className="demo-loadmore-list"
-                loading={initLoading}
+                loading={isLoading}
                 itemLayout="horizontal"
                 loadMore={loadMore}
                 dataSource={bills}
@@ -181,7 +181,8 @@ function filterSelect(bills, filter) {
 }
 
 const mapStateToProps = (state) => ({
-    bills: state.bills
+    bills: state.bills,
+    isLoading: state.isLoading
 });
 
 const mapDispatchToProps = (dispatch) => ({
