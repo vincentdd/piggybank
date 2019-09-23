@@ -135,6 +135,17 @@ const bills = (bills = [], action) => {
     }
 };
 
+const isLoading = (isLoading = false, action) => {
+    switch (action.type){
+        case actions.ISLOADING:
+            return action.isLoading;
+        case actions.FINISH_LOADING:
+            return action.isLoading;
+        default:
+            return isLoading;
+    }
+};
+
 const tags = (state = initial.tags || [], action) => {
     let TAG_ID = state.length;
     switch (action.type){
@@ -193,6 +204,7 @@ const piggyBank = combineReducers({
     filter,
     model,
     toggleFlag,
+    isLoading,
     toggleVisiableFlag
 });
 
