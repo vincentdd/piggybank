@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom';
-import BillList from '../components/List/List';
-import Chart from '../components/echarts';
+import BillList from '../Components/List/List';
+import Chart from '../Components/echarts';
 import './Home.css';
 import '../styles/common.css'
 import { PageHeader } from 'antd';

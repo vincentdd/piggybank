@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Tags from '../components/tags';
+import Tags from '../Components/tags';
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
