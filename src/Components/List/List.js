@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import BillItem from "../bill_item";
 import {connect} from 'react-redux';
-import * as actions from '../../action/action';
+import * as actions from '../../Action/action';
 // import Modal from "../Modal/Modal";
 import ItemForm from '../item_form';
 import style from "./List.module.css";

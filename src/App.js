@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import Home from './router/Home';
-import Input from './router/Input';
-import TagsList from './router/Tags';
-import NotFound from './router/NotFound';
+import Home from './Router/Home';
+import Input from './Router/Input';
+import TagsList from './Router/Tags';
+import NotFound from './Router/NotFound';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/lib/integration/react';

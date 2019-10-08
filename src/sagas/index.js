@@ -1,6 +1,6 @@
 import {take, put, call, fork, select, takeEvery, all, takeLatest} from 'redux-saga/effects'
-import * as actions from '../action/action';
-import {getBills} from '../reducer/reducer'
+import * as actions from '../Action/action';
+import {getBills} from '../Reducer/reducer'
 import * as api from '../services/bills'
 
 export function* getAllBills() {

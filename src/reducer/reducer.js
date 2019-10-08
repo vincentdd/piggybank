@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as actions from '../action/action';
+import * as actions from '../Action/action';
 //import {createStore} from "redux/index";
 
 const initial = {
