@@ -3,7 +3,8 @@ import {take, put, call, fork, select, takeEvery, all, takeLatest} from 'redux-s
 // import * as api from '../services/bills'
 import {getBills} from '../reducer/reducer'
 import {watchGetProducts, watchPostBill} from './bills'
+import {watchGetTags} from "./tags";
 
 export default function* root() {
-    yield all([fork(watchGetProducts),fork(watchPostBill)])
+    yield all([fork(watchGetProducts),fork(watchPostBill),fork(watchGetTags)])
 }

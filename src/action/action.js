@@ -7,6 +7,7 @@ export const EDIT_ITEM = 'EDIT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ADD_TAG = 'ADD_TAG';
 export const GET_ALL_TAGS = 'GET_ALL_TAGS';
+export const RECEIVE_TAGS = 'RECEIVETAGS';
 export const EDIT_TAG = 'EDIT_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
@@ -44,6 +45,10 @@ export function addTag(tag) {
 
 export function getAllTags() {
     return {type: GET_ALL_TAGS}
+}
+
+export function receiveTags(arr) {
+    return {type: RECEIVE_TAGS, payload: arr}
 }
 
 export function editTag(tag) {
