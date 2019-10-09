@@ -146,7 +146,7 @@ const isLoading = (isLoading = false, action) => {
     }
 };
 
-const tags = (state = initial.tags || [], action) => {
+const tags = (state = [], action) => {
     let TAG_ID = state.length;
     switch (action.type){
         case 'ADD_TAG':
@@ -156,6 +156,8 @@ const tags = (state = initial.tags || [], action) => {
             ];
         case 'EDIT_TAG':
             return state.map(current => tag(current, action));
+        case actions.RECEIVE_TAGS:
+            return state;
         default:
             return state;
     }

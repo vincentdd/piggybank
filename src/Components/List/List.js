@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-// import BillItem from "../bill_item";
 import {connect} from 'react-redux';
 import * as actions from '../../Action/action';
 // import Modal from "../Modal/Modal";
-import ItemForm from '../item_form';
+// import BillItem from "../bill_item";
+// import BillForm from '../ModalForm/BillForm'
+// import ItemForm from '../item_form';
 import style from "./List.module.css";
 import {List, Modal, Button, Skeleton} from 'antd';
-// import BillForm from '../ModalForm/BillForm'
 import CollectionsPage from '../Modal/Modal';
 import CollectionCreateForm from '../ModalForm/BillForm';
 
@@ -20,6 +20,7 @@ class LoadMoreList extends Component {
     componentDidMount() {
         console.log(this.props.initBillList);
         this.props.initBillList();
+        this.props.initTags();
     }
     
     onLoadMore = () => {
@@ -177,7 +178,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     initBillList: () => dispatch(actions.getAllBills()),
-    receiveBillList: (payload) => dispatch(actions.receiveBillList(payload))
+    initTags: () => dispatch(actions.getAllTags()),
+    // receiveBillList: (payload) => dispatch(actions.receiveBillList(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadMoreList);
