@@ -49,6 +49,7 @@ class CollectionsPage extends Component {
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
                     bill={this.props.bill}
+                    tags={this.props.tags}
                 />
             </div>
         );
@@ -59,7 +60,9 @@ CollectionsPage.propTypes = {
     //toggleVisible: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    tags: state.tags
+});
 
 const mapDispatchToProps = (dispatch) => ({
     handleEdit: (payload) => {

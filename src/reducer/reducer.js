@@ -2,59 +2,9 @@ import { combineReducers } from 'redux';
 import * as actions from '../action/action';
 //import {createStore} from "redux/index";
 
-const initial = {
-    tags: [
-        {
-            id: 0,
-            text: '餐饮',
-            color:null
-        },
-        {
-            id: 1,
-            text: '娱乐',
-            color:null
-        },
-        {
-            id: 2,
-            text: '交通',
-            color:null
-        }
-    ],
-    bills: [
-        {
-            id: 0,
-            text: '午饭',
-            tagId: 0,
-            date: '2018-06-07',
-            price: 25
-        },
-        {
-            id: 1,
-            text: '耳机',
-            tagId: 1,
-            date: '2018-02-05',
-            price: 2200
-        },
-        {
-            id: 2,
-            text: '加油',
-            tagId: 2,
-            date: '2018-05-31',
-            price: 353
-        },
-        {
-            id: 3,
-            text: '买菜',
-            tagId: 0,
-            date: '2018-04-15',
-            price: 37
-        }
-    ],
-    filter: 'day',
-    model: 'list',
-    toggleFlag: false,
-    visiableFlag: false
-};
+// const initial = function () {
+//
+// }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 function deepFreeze (o) {
@@ -157,7 +107,7 @@ const tags = (state = [], action) => {
         case 'EDIT_TAG':
             return state.map(current => tag(current, action));
         case actions.RECEIVE_TAGS:
-            return state;
+            return action.payload;
         default:
             return state;
     }
