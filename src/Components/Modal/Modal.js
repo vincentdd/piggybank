@@ -1,48 +1,10 @@
-import React,{ Component } from 'react';
+import React, {Component} from 'react';
 import {createPortal} from 'react-dom';
 import Portal from '../portal';
 import PropTypes from 'prop-types';
-import { Button, Modal, Form, Input, Radio } from 'antd';
-
-const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
-    // eslint-disable-next-line
-    class extends React.Component {
-        render() {
-            const { visible, onCancel, onCreate, form } = this.props;
-            const { getFieldDecorator } = form;
-            return (
-                <Modal
-                    visible={visible}
-                    title="编辑"
-                    okText="Create"
-                    onCancel={onCancel}
-                    onOk={onCreate}
-                >
-                    <Form layout="vertical">
-                        <Form.Item label="Title">
-                            {getFieldDecorator('title', {
-                                rules: [{ required: true, message: 'Please input the title of collection!' }],
-                            })(<Input />)}
-                        </Form.Item>
-                        <Form.Item label="Description">
-                            {getFieldDecorator('description')(<Input type="textarea" />)}
-                        </Form.Item>
-                        <Form.Item className="collection-create-form_last-form-item">
-                            {getFieldDecorator('modifier', {
-                                initialValue: 'public',
-                            })(
-                                <Radio.Group>
-                                    <Radio value="public">Public</Radio>
-                                    <Radio value="private">Private</Radio>
-                                </Radio.Group>,
-                            )}
-                        </Form.Item>
-                    </Form>
-                </Modal>
-            );
-        }
-    },
-);
+import {Button, Modal, Form, Input, Radio} from 'antd';
+import {connect} from 'react-redux'
+import * as actions from '../../action/action';
 
 class CollectionsPage extends Component {
     state = {
@@ -50,23 +12,23 @@ class CollectionsPage extends Component {
     };
 
     showModal = () => {
-        this.setState({ visible: true });
+        this.setState({visible: true});
     };
 
     handleCancel = () => {
-        this.setState({ visible: false });
+        this.setState({visible: false});
     };
 
     handleCreate = () => {
-        const { form } = this.formRef.props;
+        const {form} = this.formRef.props;
         form.validateFields((err, values) => {
             if (err) {
                 return;
             }
-
+            this.props.handleEdit({...values, modifier: values.modifier.format()});
             console.log('Received values of form: ', values);
             form.resetFields();
-            this.setState({ visible: false });
+            this.setState({visible: false});
         });
     };
 
@@ -75,69 +37,40 @@ class CollectionsPage extends Component {
     };
 
     render() {
+        const CollectionForm = this.props.collectionform;
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
                     {this.props.name}
                 </Button>
-                <CollectionCreateForm
+                <CollectionForm
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
+                    bill={this.props.bill}
                 />
             </div>
         );
     }
 }
 
-
-
-//const Modal = WrappedComponent => class extends Component {
-// class Modal extends Component {
-//         constructor(props) {
-//         super(props);
-//         // this.toggleVisible = this.toggleVisible.bind(this);
-//     }
-//     static defaultProps = {
-//         isOpen: false,
-//         parentSelector: () => document.body
-//     };
-//     componentDidMount(){
-//         // debugger;
-//         // console.log(this.props.parentSelector());
-//         const parent = getParentElement(this.props.parentSelector);
-//         parent.appendChild(this.node);
-//     };
-//     // componentWillUnmount() {
-//     //     window.document.body.removeChild(this.node);
-//     // }
-//     render(){
-//         // const props = {
-//         //     ...this.props,
-//         //     handleSubmit: this.handleSubmit,
-//         //     getField: this.getField,
-//         // };
-//         // this.setState({visiable: false, fields: {}});
-//         const props = this.props,
-//             { isOpen } = props;
-//         // debugger;
-//         if(!this.node)
-//             this.node = document.createElement("div");
-//         if(!isOpen)
-//             return null;
-//         else
-//             return createPortal(
-//                 <Portal isOpen={isOpen}>
-//                     {this.props.children}
-//                 </Portal>,
-//                 this.node
-//             );
-//     }
-// }
-
 CollectionsPage.propTypes = {
     //toggleVisible: PropTypes.func
 };
 
-export default CollectionsPage;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+    handleEdit: (payload) => {
+        console.log(actions.editItem(payload));
+        dispatch(actions.editItem(payload))
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CollectionsPage);
+
+// export default CollectionsPage;

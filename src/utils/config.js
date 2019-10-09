@@ -16,6 +16,7 @@ module.exports = {
     APIV2,
     APIV3,
     api: {
-        GET_ALL_BILLS: `/bills`
+        GET_ALL_BILLS: `/bills`,
+        POST_BILL: '/bills'
     },
 };

@@ -5,10 +5,10 @@ import * as actions from '../../Action/action';
 // import Modal from "../Modal/Modal";
 import ItemForm from '../item_form';
 import style from "./List.module.css";
-import {getAllBills} from "../../services/bills"
 import {List, Modal, Button, Skeleton} from 'antd';
 // import BillForm from '../ModalForm/BillForm'
 import CollectionsPage from '../Modal/Modal';
+import CollectionCreateForm from '../ModalForm/BillForm';
 
 class LoadMoreList extends Component {
     state = {
@@ -20,18 +20,8 @@ class LoadMoreList extends Component {
     componentDidMount() {
         console.log(this.props.initBillList);
         this.props.initBillList();
-        // this.getData(res => {
-        //     this.setState({
-        //         initLoading: false,
-        //         loading: false
-        //     });
-        // });
     }
-
-    // getData = callback => {
-    //     getAllBills().then(callback);
-    // };
-
+    
     onLoadMore = () => {
         this.setState({
             loading: true,
@@ -81,7 +71,7 @@ class LoadMoreList extends Component {
                 loadMore={loadMore}
                 dataSource={bills}
                 renderItem={item => (
-                    <List.Item actions={[<CollectionsPage name={'编辑'} {...item} />]} >
+                    <List.Item actions={[<CollectionsPage name={'编辑'} bill={item} collectionform={CollectionCreateForm} />]} >
                         <Skeleton avatar title={false} loading={item.loading} active>
                             <span className={'bill-item-context'}>{item.context}</span>
                             <span className={'bill-item-price'}>{item.price}</span>
@@ -134,51 +124,51 @@ class LoadMoreList extends Component {
 //     }
 // }
 
-function showDay(bills) {
-    let result = [],
-        ITEM_ID = 0,
-        temp = {};
-    if (!Date.prototype.__filterTime)
-        return bills;
-    bills.map((current, index, array) => {
-        const dayOfBefore = new Date(current.date).__filterTime(),
-            dayOfAfter = new Date(array[index + 1].date).__filterTime();
-        if (dayOfBefore === dayOfAfter) {
-            temp.price += current.price;
-            temp.text = current.date;
-            temp.date = current.date;
-        } else {
-            result = [...result, temp];
-            temp = {
-                id: ITEM_ID++,
-                price: 0,
-                tagId: 'NONE'
-            };
-        }
-    });
-    return result;
-}
-
-function filterSelect(bills, filter) {
-    switch (filter) {
-        case 'DAY':
-            Date.prototype.__filterTime = new Date().getDate;
-            break;
-        case 'WEEK':
-            Date.prototype.__filterTime = new Date().getDay;
-            break;
-        case 'MONTH':
-            Date.prototype.__filterTime = new Date().getMonth;
-            break;
-        case 'YEAR':
-            Date.prototype.__filterTime = new Date().getFullYear;
-            break;
-        default:
-            Date.prototype.__filterTime = undefined;
-            break;
-    }
-    return showDay(bills);
-}
+// function showDay(bills) {
+//     let result = [],
+//         ITEM_ID = 0,
+//         temp = {};
+//     if (!Date.prototype.__filterTime)
+//         return bills;
+//     bills.map((current, index, array) => {
+//         const dayOfBefore = new Date(current.date).__filterTime(),
+//             dayOfAfter = new Date(array[index + 1].date).__filterTime();
+//         if (dayOfBefore === dayOfAfter) {
+//             temp.price += current.price;
+//             temp.text = current.date;
+//             temp.date = current.date;
+//         } else {
+//             result = [...result, temp];
+//             temp = {
+//                 id: ITEM_ID++,
+//                 price: 0,
+//                 tagId: 'NONE'
+//             };
+//         }
+//     });
+//     return result;
+// }
+//
+// function filterSelect(bills, filter) {
+//     switch (filter) {
+//         case 'DAY':
+//             Date.prototype.__filterTime = new Date().getDate;
+//             break;
+//         case 'WEEK':
+//             Date.prototype.__filterTime = new Date().getDay;
+//             break;
+//         case 'MONTH':
+//             Date.prototype.__filterTime = new Date().getMonth;
+//             break;
+//         case 'YEAR':
+//             Date.prototype.__filterTime = new Date().getFullYear;
+//             break;
+//         default:
+//             Date.prototype.__filterTime = undefined;
+//             break;
+//     }
+//     return showDay(bills);
+// }
 
 const mapStateToProps = (state) => ({
     bills: state.bills,

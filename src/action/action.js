@@ -31,7 +31,7 @@ export function finishLoading() {
 }
 
 export function editItem(item) {
-    return {type: EDIT_ITEM, item: {...item}}
+    return {type: EDIT_ITEM, ...item}
 }
 
 export function deleteItem(itemId) {

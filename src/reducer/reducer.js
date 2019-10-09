@@ -123,11 +123,11 @@ const bills = (bills = [], action) => {
                 ...bills,
                 {...action.payload, id: ITEM_ID}
             ];
-        case 'EDIT_ITEM':
-            return bills.map(current =>
-                (current.id === action.payload.id)
-                    ? {...action.payload}
-                    : current);
+        // case 'EDIT_ITEM':
+        //     return bills.map(current =>
+        //         (current.id === action.payload.id)
+        //             ? {...action.payload}
+        //             : current);
         case actions.RECEIVE_BILLS_LIST:
             return [...action.billsList];
         default:
