@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+    import React, { Component } from 'react';
 import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/pie';
 import 'echarts/lib/component/tooltip';
@@ -147,8 +147,10 @@ function filterTags(tags, id) {
             return current;
     });
 }
+
 const mapStateToProps = (state) => ({
-    bills: filterBills(state.bills, state.tags)
+    bills: filterBills(state.bills, state.tags),
+    tags: state.tags
 });
 
 const mapDispatchToProps = (dispatch) => ({

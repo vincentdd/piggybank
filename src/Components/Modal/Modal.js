@@ -4,7 +4,7 @@ import Portal from '../portal';
 import PropTypes from 'prop-types';
 import {Button, Modal, Form, Input, Radio} from 'antd';
 import {connect} from 'react-redux'
-import * as actions from '../../action/action';
+import * as actions from '../../Action/action';
 
 class CollectionsPage extends Component {
     state = {
@@ -49,6 +49,7 @@ class CollectionsPage extends Component {
                     onCancel={this.handleCancel}
                     onCreate={this.handleCreate}
                     bill={this.props.bill}
+                    tags={this.props.tags}
                 />
             </div>
         );
@@ -59,7 +60,9 @@ CollectionsPage.propTypes = {
     //toggleVisible: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    tags: state.tags
+});
 
 const mapDispatchToProps = (dispatch) => ({
     handleEdit: (payload) => {

@@ -2,18 +2,20 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import {Button, Modal, Form, Input, DatePicker, Select} from 'antd';
 
-const Option = {Select};
+const {Option} = Select;
 
 const CollectionCreateForm = Form.create({name: 'bill_form'})(
     // eslint-disable-next-line
     class extends React.Component {
-        componentDidMount(){
-            const arr = this.props.bill.tag;
-            const temp = 
-        }
+        // componentDidMount() {
+        //
+        // }
+
         render() {
             const {visible, onCancel, onCreate, form, bill} = this.props;
             const {getFieldDecorator} = form;
+            const arr = this.props.tags;
+            const temp = arr.map( item => <Option value={item.tagId} >item.context</Option>);
             return (
                 <Modal
                     visible={visible}
@@ -31,16 +33,17 @@ const CollectionCreateForm = Form.create({name: 'bill_form'})(
                         </Form.Item>
                         <Form.Item label="Price">
                             {getFieldDecorator('price', {
-                                rules: [{required: true, message: 'Please input the price of collection!'},{type:'string', pattern: /^[0-9]+(.[0-9]{2})?$/ , message: 'Price must be number.'}],
+                                rules: [{
+                                    required: true,
+                                    message: 'Please input the price of collection!'
+                                }, {type: 'string', pattern: /^[0-9]+(.[0-9]{2})?$/, message: 'Price must be number.'}],
                                 initialValue: bill.price
                             })(<Input type="textarea"/>)}
                         </Form.Item>
                         <Form.Item label="Tag">
                             {getFieldDecorator('tag', {
-                                rules: [{required: true, message: 'Please input the tag of collection!'}]
-                            })(<Select>
-                                {}
-                            </Select>)}
+                                rules: [{required: true, message: 'Please input the price of collection!'}]
+                            })(<Select>{temp}</Select>)}
                         </Form.Item>
                         <Form.Item className="collection-create-form_last-form-item">
                             {getFieldDecorator('modifier', {
