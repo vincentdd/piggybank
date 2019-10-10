@@ -22,11 +22,11 @@ class LoadMoreList extends Component {
         this.props.initBillList();
         this.props.initTags();
     }
-    
+
     onLoadMore = () => {
         this.setState({
             loading: true,
-            list: this.state.data.concat([].map(() => ({ loading: true, name: {} }))),
+            list: this.state.data.concat([].map(() => ({loading: true, name: {}}))),
         });
         this.getData(res => {
             const data = this.state.data.concat(res.payload);
@@ -47,8 +47,8 @@ class LoadMoreList extends Component {
     };
 
     render() {
-        const { loading } = this.state;
-        const { isLoading, bills } = this.props;
+        const {loading} = this.state;
+        const {isLoading, bills} = this.props;
         const loadMore =
             !isLoading && !loading ? (
                 <div
@@ -72,7 +72,8 @@ class LoadMoreList extends Component {
                 loadMore={loadMore}
                 dataSource={bills}
                 renderItem={item => (
-                    <List.Item actions={[<CollectionsPage name={'编辑'} bill={item} collectionform={CollectionCreateForm} />]} >
+                    <List.Item
+                        actions={[<CollectionsPage name={'编辑'} bill={item} collectionform={CollectionCreateForm}/>]}>
                         <Skeleton avatar title={false} loading={item.loading} active>
                             <span className={'bill-item-context'}>{item.context}</span>
                             <span className={'bill-item-price'}>{item.price}</span>
