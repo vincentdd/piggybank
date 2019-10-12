@@ -4,7 +4,7 @@ import BillList from '../Components/List/List';
 import Chart from '../Components/echarts';
 import './Home.css';
 import '../styles/common.css'
-import {PageHeader} from 'antd';
+import {PageHeader, Spin, Alert} from 'antd';
 import {connect} from "react-redux";
 import * as actions from "../Action/action";
 
