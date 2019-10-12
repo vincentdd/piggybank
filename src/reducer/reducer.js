@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import * as actions from '../Action/action';
 //import {createStore} from "redux/index";
 
@@ -7,7 +7,7 @@ import * as actions from '../Action/action';
 // }
 
 ///////////////////////////////////////////////////////////////////////////////////////
-function deepFreeze (o) {
+function deepFreeze(o) {
     Object.freeze(o);
 
     Object.getOwnPropertyNames(o).forEach(function (prop) {
@@ -22,38 +22,15 @@ function deepFreeze (o) {
     return o;
 }
 
-// const bill = (state, action) => {
-//     switch (action.type){
-//         case 'ADD_ITEM':
-//             return {
-//                 id: action.id,
-//                 text: action.text,
-//                 date: action.date,
-//                 price: action.price,
-//                 tagId: action.tagId
-//             };
-//         case 'EDIT_ITEM':
-//             if(state.id !== action.id){
-//                 return state;
-//             }
-//             return {
-//                 ...state,
-//                 tagId: action.tagId
-//             };
-//         default:
-//             return state;
-//     }
-// }
-
 const tag = (state, action) => {
-    switch (action.type){
+    switch (action.type) {
         case 'ADD_TAG':
             return {
                 id: action.id,
                 text: action.text
             };
         case 'EDIT_TAG':
-            if(state.id !== action.id){
+            if (state.id !== action.id) {
                 return state;
             }
             return {
@@ -65,9 +42,18 @@ const tag = (state, action) => {
     }
 };
 
+const isInitialing = (isInitialing = false, action) => {
+    switch (action.type) {
+        case actions.IS_INITIALING:
+            return {isInitialing: true};
+        case actions.INITIAL_SUCCESS:
+            return {isInitialing: false};
+    }
+}
+
 const bills = (bills = [], action) => {
     let ITEM_ID = bills.length;
-    switch (action.type){
+    switch (action.type) {
         case 'ADD_ITEM':
             return [
                 ...bills,
@@ -86,7 +72,7 @@ const bills = (bills = [], action) => {
 };
 
 const isLoading = (isLoading = false, action) => {
-    switch (action.type){
+    switch (action.type) {
         case actions.ISLOADING:
             return action.isLoading;
         case actions.FINISH_LOADING:
@@ -98,11 +84,11 @@ const isLoading = (isLoading = false, action) => {
 
 const tags = (state = [], action) => {
     let TAG_ID = state.length;
-    switch (action.type){
+    switch (action.type) {
         case 'ADD_TAG':
             return [
                 ...state,
-                tag(undefined, { ...action, id: TAG_ID })
+                tag(undefined, {...action, id: TAG_ID})
             ];
         case 'EDIT_TAG':
             return state.map(current => tag(current, action));
@@ -114,7 +100,7 @@ const tags = (state = [], action) => {
 }
 
 const filter = (state = {} || 'NONE', action) => {
-    switch (action.type){
+    switch (action.type) {
         case 'SET_FILTER':
             return action.filter;
         default:
@@ -123,7 +109,7 @@ const filter = (state = {} || 'NONE', action) => {
 }
 
 const model = (state = {} || 'list', action) => {
-    switch (action.type){
+    switch (action.type) {
         case 'SET_MODEL':
             return action.model;
         default:
@@ -131,8 +117,8 @@ const model = (state = {} || 'list', action) => {
     }
 }
 
-const toggleFlag = (state = {} ||  false, action) => {
-    switch (action.type){
+const toggleFlag = (state = {} || false, action) => {
+    switch (action.type) {
         case 'TOGGLE_FLAG':
             return action.flag;
         default:
@@ -140,8 +126,8 @@ const toggleFlag = (state = {} ||  false, action) => {
     }
 }
 
-const toggleVisiableFlag = (state = {} ||  false, action) => {
-    switch (action.type){
+const toggleVisiableFlag = (state = {} || false, action) => {
+    switch (action.type) {
         case 'TOGGLE_VISIABLE_FLAG':
             return action.visiableFlag;
         default:
@@ -162,102 +148,4 @@ const piggyBank = combineReducers({
 
 export default piggyBank;
 
-// store.dispatch({
-//     type: 'ADD_ITEM',
-//     text: '003',
-//     date: '2018-07-01',
-//     price: 100,
-//     tagId: 1
-// })
-// const testTag = () => {
-//   const tagBefore = [
-//     {
-//       id: 0,
-//       text: 'food'
-//     },
-//     {
-//       id: 1,
-//       text: 'game'
-//     }
-//   ];
 
-//   const tagAfter = [
-//     {
-//       id: 0,
-//       text: 'food'
-//     },
-//     {
-//       id: 1,
-//       text: 'game'
-//     },
-//     {
-//       id: 2,
-//       text: 'others'
-//     }
-//   ]
-
-// const action = {
-//     type: 'ADD_TAG',
-//     text: 'others'
-// }
-
-//   deepFreeze(tagBefore);
-
-//   expect(
-//     tagList(tagBefore, action)
-//   ).toEqual(tagAfter);
-// }
-
-// const testbill = () => {
-//   const billBefore =
-//     [
-//       {
-//         id: 0,
-//         text: 'test',
-//         tag: 'food',
-//         date: '2018-05-01',
-//         price: '25'
-//       },
-//       {
-//         id: 1,
-//         text: '停车费',
-//         tag: undefined,
-//         date: '2018-05-01',
-//         price: '7'
-//       }
-//     ];
-
-//   const billAfter = [
-//       {
-//         id: 0,
-//         text: 'test',
-//         tag: '买菜',
-//         date: '2018-05-01',
-//         price: '25'
-//       },
-//       {
-//         id: 1,
-//         text: '停车费',
-//         tag: undefined,
-//         date: '2018-05-01',
-//         price: '7'
-//       }
-//     ];
-
-// const action = {
-//   type: 'SET_TAG',
-//   id: 0,
-//   tag: '买菜'
-// };
-
-//   deepFreeze(billBefore);
-
-//   expect(
-//     billList(billBefore, action)
-//   ).toEqual(billAfter);
-// };
-
-// testbill();
-// testTag();
-// console.log(store.getState());
-// console.log("pass");
