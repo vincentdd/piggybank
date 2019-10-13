@@ -10,6 +10,16 @@ export const GET_ALL_TAGS = 'GET_ALL_TAGS';
 export const RECEIVE_TAGS = 'RECEIVETAGS';
 export const EDIT_TAG = 'EDIT_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
+export const IS_INITIALING = 'IS_INITIALING';
+export const INITIAL_SUCCESS = 'INITIAL_SUCCESS';
+
+export function isInitialing() {
+    return {type: IS_INITIALING}
+}
+
+export function initialSuccess() {
+    return {type: INITIAL_SUCCESS}
+}
 
 export function addItem(item) {
     return {type: ADD_ITEM, item: {...item}}
@@ -28,7 +38,7 @@ export function isLoading() {
 }
 
 export function finishLoading() {
-    return {type: FINISH_LOADING, isLoading:false}
+    return {type: FINISH_LOADING, isLoading: false}
 }
 
 export function editItem(item) {

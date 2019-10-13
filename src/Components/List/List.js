@@ -18,9 +18,10 @@ class LoadMoreList extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props.initBillList);
+        // console.log(this.props.initBillList);
         // this.props.initBillList();
         // this.props.initTags();
+        console.log(this.props.bills)
     }
 
     onLoadMore = () => {
