@@ -15,7 +15,7 @@ const CollectionCreateForm = Form.create({name: 'bill_form'})(
             const {visible, onCancel, onCreate, form, bill} = this.props;
             const {getFieldDecorator} = form;
             const arr = this.props.tags;
-            const temp = arr.map( item => <Option value={item.tagId} >item.context</Option>);
+            const temp = arr.map((item, index) => <Option value={item.tagId} key={index}>item.context</Option>);
             return (
                 <Modal
                     visible={visible}
