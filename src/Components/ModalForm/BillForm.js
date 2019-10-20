@@ -15,7 +15,7 @@ const CollectionCreateForm = Form.create({name: 'bill_form'})(
             const {visible, onCancel, onCreate, form, bill} = this.props;
             const {getFieldDecorator} = form;
             const arr = this.props.tags;
-            const temp = arr.map( item => <Option value={item.tagId} >item.context</Option>);
+            const temp = arr.map((item, index) => <Option value={item._id} key={index}>{item.context}</Option>);
             return (
                 <Modal
                     visible={visible}
@@ -43,12 +43,13 @@ const CollectionCreateForm = Form.create({name: 'bill_form'})(
                         <Form.Item label="Tag">
                             {getFieldDecorator('tag', {
                                 rules: [{required: true, message: 'Please input the price of collection!'}]
+                                // initialValue: bill.tagId
                             })(<Select>{temp}</Select>)}
                         </Form.Item>
                         <Form.Item className="collection-create-form_last-form-item">
                             {getFieldDecorator('modifier', {
                                 rules: [{required: true, message: 'Please input the date of collection!'}],
-                                initialValue: moment(bill.createDate, "YYYY-MM-DD"),
+                                initialValue: moment(bill.createDate, "YYYY-MM-DD")
                             })(<DatePicker format="YYYY-MM-DD"/>)}
                         </Form.Item>
                     </Form>
