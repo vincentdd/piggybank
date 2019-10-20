@@ -149,8 +149,8 @@ function filterTags(tags, id) {
 }
 
 const mapStateToProps = (state) => ({
-    // bills: filterBills(state.bills, state.tags),
-    bills: state.bills,
+    bills: filterBills(state.bills, state.tags),
+    // bills: state.bills,
     tags: state.tags
 });
 
