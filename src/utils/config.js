@@ -18,6 +18,7 @@ module.exports = {
     api: {
         GET_ALL_BILLS: `/bills`,
         POST_BILL: '/bills',
+        UPDATE_BILL: '/bill',
         GET_ALL_TAGS: '/tags'
     },
 };

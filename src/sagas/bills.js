@@ -21,6 +21,14 @@ export function* postBill(obj) {
     }
 }
 
+export function* updateBill(obj) {
+    // yield put(actions.editItem());
+    const result = yield call(api.postBill, obj);
+    if (result !== undefined && result.code === 0) {
+        yield put(actions.getAllBills());
+    }
+}
+
 export function* watchGetProducts() {
     yield takeEvery(actions.GET_ALL_BILLS, getAllBills);
 }
