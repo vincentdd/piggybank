@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cd3cbad3-fe0f-4f98-bdc1-d418e0352813" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/sagas/bills.js" afterPath="$PROJECT_DIR$/src/sagas/bills.js" />
-      <change beforePath="$PROJECT_DIR$/src/services/bills.js" afterPath="$PROJECT_DIR$/src/services/bills.js" />
-      <change beforePath="$PROJECT_DIR$/src/utils/config.js" afterPath="$PROJECT_DIR$/src/utils/config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -523,12 +520,12 @@
       <workItem from="1571229903637" duration="596000" />
       <workItem from="1571314388191" duration="776000" />
       <workItem from="1571555104788" duration="4149000" />
-      <workItem from="1571830751954" duration="3193000" />
+      <workItem from="1571830751954" duration="3286000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="651415000" />
+    <option name="totallyTimeSpent" value="651508000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -541,7 +538,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1532738" sideWeight="0.4868421" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
