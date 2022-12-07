@@ -15,7 +15,7 @@
     "moment": "^2.24.0",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.6.2",
-    "qs": "^6.7.0",
+    "qs": "^6.5.3",
     "rc-checkbox": "^2.1.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
